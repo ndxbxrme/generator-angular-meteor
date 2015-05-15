@@ -132,7 +132,7 @@ module.exports = yeoman.generators.Base.extend({
   changeDirectory: function() {
     var cb = this.async();
     if(!fs.existsSync(process.cwd() + '/' + this.appname)) {
-      this.log('Something went wrong running meteor, please make sure you have it installed properly');
+      this.log('Something went wrong running meteor, please make sure you have it installed properly.  https://www.meteor.com/');
       return;
     }
     process.chdir(process.cwd() + '/' + this.appname);
