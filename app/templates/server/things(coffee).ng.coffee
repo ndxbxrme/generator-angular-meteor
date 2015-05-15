@@ -1,5 +1,5 @@
 'use strict'
-
+<% if(pagination){ %>
 Meteor.publish 'things', (options, searchString) ->
   if searchString == null
     searchString = ''
@@ -12,4 +12,4 @@ Meteor.publish 'things', (options, searchString) ->
     'name':
       '$regex': '.*' + searchString or '' + '.*'
       '$options': 'i'
-  }, options
+  }, options<% } %>

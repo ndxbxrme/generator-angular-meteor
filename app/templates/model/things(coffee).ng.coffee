@@ -7,7 +7,7 @@ Things.allow
     true
   remove: (userId, thing) ->
     true
-    
+<% if(pagination) { %>    
 Things.attachSchema new SimpleSchema
   name:
     type: String
@@ -20,4 +20,4 @@ Things.attachSchema new SimpleSchema
       if name.isSet
         name.value.toLowerCase()
       else
-        @unset()
+        @unset()<% } %>

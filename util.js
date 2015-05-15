@@ -30,19 +30,21 @@ function write(self, options, cb) {
     files.forEach(function(f) {
       if(f.search(/\.(js|coffee|html|jade|css|scss|less|styl)$/)>-1 || f.indexOf('_')===0) {
         for(var filter in self.filters) {
-          if(f.indexOf('(' + filter + ')')!==-1 || f.indexOf('(')===-1) {
-            var newname = f.replace('(' + filter + ')', '');
-            try {
-              self.fs.copyTpl(
-                self.templatePath(f),
-                self.destinationPath(newname.replace(/^_/, '').replace('compname-singular',options.compnameSingular).replace('compname', self.compname)),
-                options
-              );
+          if(self.filters[filter]) {
+            if(f.indexOf('(' + filter + ')')!==-1 || f.indexOf('(')===-1) {
+              var newname = f.replace('(' + filter + ')', '');
+              try {
+                self.fs.copyTpl(
+                  self.templatePath(f),
+                  self.destinationPath(newname.replace(/^_/, '').replace('compname-singular',options.compnameSingular).replace('compname', self.compname)),
+                  options
+                );
+              }
+              catch(err) {
+                console.log(err, options);
+              }
+              break;
             }
-            catch(err) {
-              console.log(err, options);
-            }
-            break;
           }
         }
       }

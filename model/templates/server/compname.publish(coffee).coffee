@@ -1,5 +1,5 @@
 'use strict'
-
+<% if(auth){ %>
 Meteor.publish '<%= compname %>', (options, searchString) ->
   if searchString == null
     searchString = ''
@@ -12,4 +12,4 @@ Meteor.publish '<%= compname %>', (options, searchString) ->
     'name':
       '$regex': '.*' + searchString or '' + '.*'
       '$options': 'i'
-  }, options
+  }, options<% } %>

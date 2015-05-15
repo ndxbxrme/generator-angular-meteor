@@ -5,9 +5,9 @@ var _ = require('underscore.string');
 var _i = require('underscore.inflection');
 var genUtils = require('../util.js');
 
-var meteorToAdd = ['urigo:angular', 'angularui:angular-ui-router', 'tmeasday:publish-counts', 'aldeed:collection2', 'angularutils:pagination'];
+var meteorToAdd = ['urigo:angular', 'angularui:angular-ui-router'];
 var meteorToRemove = [];
-var angularModules = ['angular-meteor', 'ui.router', 'angularUtils.directives.dirPagination'];
+var angularModules = ['angular-meteor', 'ui.router'];
 
 module.exports = yeoman.generators.Base.extend({
   init: function() {
@@ -65,6 +65,10 @@ module.exports = yeoman.generators.Base.extend({
         filter: function( val ) { return val.toLowerCase(); }
       }, {
         type: "confirm",
+        name: "pagination",
+        message: "Would you like out of the box pagination, sorting and searching support?"
+      }, {
+        type: "confirm",
         name: "material",
         message: "Would you like to include Angular Material?"
       }, {
@@ -76,6 +80,7 @@ module.exports = yeoman.generators.Base.extend({
         this.filters[answers.script] = true;
         this.filters[answers.markup] = true;
         this.filters[answers.stylesheet] = true;
+        this.filters.pagination = !!answers.pagination;
         this.filters.material = !!answers.material;
         this.filters.bower = !!answers.bower;
       cb();
@@ -152,6 +157,8 @@ module.exports = yeoman.generators.Base.extend({
     var cb = this.async();
     if(this.filters.auth) {
       meteorToRemove.push('insecure');
+    }
+    if(this.filters.pagination) {
       meteorToRemove.push('autopublish');
     }
     var index = 0;
@@ -183,6 +190,12 @@ module.exports = yeoman.generators.Base.extend({
     }
     if(this.filters.bower) {
       meteorToAdd.push('mquandalle:bower'); 
+    }
+    if(this.filters.pagination) {
+      meteorToAdd.push('tmeasday:publish-counts');
+      meteorToAdd.push('aldeed:collection2');
+      meteorToAdd.push('angularutils:pagination'); 
+      angularModules.push('angularUtils.directives.dirPagination');
     }
     if(this.filters.auth) {
       meteorToAdd.push('accounts-password');
