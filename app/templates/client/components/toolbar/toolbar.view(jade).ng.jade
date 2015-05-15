@@ -1,0 +1,5 @@
+md-toolbar.toolbar(layout='row', layout-align='start center', layout-padding='')
+  .navbar-left<% if(auth) { %>
+    meteor-include(src='loginButtons')<% } %>
+  span(flex='')
+  .navbar-right <%= appname %>

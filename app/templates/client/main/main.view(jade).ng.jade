@@ -1,0 +1,24 @@
+form(ng-submit='save()', name='form', novalidate='', layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 Things
+    .md-whiteframe-z1(layout-padding='')
+      p Add a thing
+      md-input-container
+        label Name
+        input(ng-model='newThing.name', placeholder='Name')
+      input.md-button(type='submit', value='Add')
+    div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+      md-select(ng-model='orderProperty', flex='35')
+        md-option(value='1') Ascending
+        md-option(value='-1') Descending
+    ul
+      li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count')
+        p {{ thing.name }}
+          button(ng-click='remove(thing)') &times;
+    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+    p Total number of things: {{thingsCount.count}}
+  span(flex='')
