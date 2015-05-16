@@ -66,7 +66,7 @@ module.exports = yeoman.generators.Base.extend({
       }, {
         type: "confirm",
         name: "pagination",
-        message: "Would you like out of the box pagination, sorting and searching support?"
+        message: "Would you like pagination, sorting and searching support?"
       }, {
         type: "confirm",
         name: "material",
@@ -93,7 +93,7 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt([{
       type: "confirm",
       name: "auth",
-      message: "Would you scaffold out an authentication boilerplate?"
+      message: "Would you like to use user authentication?"
     }, {
       type: 'checkbox',
       name: 'oauth',

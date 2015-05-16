@@ -1,13 +1,39 @@
 {
   "name": "generator-angular-meteor",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+  "version": "0.1.0",
+  "description": "Yeoman generator for creating AngularJS + Meteor applications",
+  "keywords": [
+    "yeoman-generator",
+    "angularjs",
+    "meteor",
+    "mongodb",
+    "scaffold",
+    "fullstack",
+    "framework",
+    "component",
+    "front-end",
+    "app"
+  ],
+  "homepage": "https://github.com/ndxbxrme/generator-angular-meteor",
+  "bugs": {
+    "url": "https://github.com/ndxbxrme/generator-angular-meteor/issues"
   },
-  "author": "ndxbxrme",
-  "license": "ISC",
+  "author": {
+    "name": "ndxbxrme",
+    "email": "ndxbxrme@outlook.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/ndxbxrme/generator-angular-meteor.git"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "licenses": [
+    {
+      "type": "BSD"
+    }
+  ],
   "dependencies": {
     "cross-spawn": "^0.4.0",
     "glob": "^5.0.6",

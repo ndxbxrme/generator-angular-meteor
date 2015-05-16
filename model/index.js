@@ -26,8 +26,7 @@ module.exports = yeoman.generators.Base.extend({
       this.filters.compnameCapped = _.capitalize(this.filters.compname);
       this.filters.compnameCappedSingular = _i.singularize(this.filters.compnameCapped);
       if(this.filters.compname===this.filters.compnameSingular) {
-        this.log('Model name should be plural');
-        return;
+        this.log('It is recommended to use a plural model name');
       }
     }
     else {
