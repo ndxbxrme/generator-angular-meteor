@@ -1,0 +1,13 @@
+.<%= compnameSingular %>-detail(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 Here are the details of the <%=compnameSingular%>
+    .md-whiteframe-z1(layout-padding='')
+      md-input-container
+        label Name
+        input(ng-model='<%= compnameSingular %>.name', placeholder='Name')
+      div(layout='row')
+        input.md-button(type='submit', value='Save')
+        md-button(ng-click='reset()') Reset
+        md-button(ng-href='/<%= compname %>') Cancel
+  span(flex='')

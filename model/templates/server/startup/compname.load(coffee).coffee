@@ -1,5 +1,3 @@
-'use strict'
-
 Meteor.startup ->
   if <%= compnameCapped %>.find().count() == 0
     <%= compname %> = [

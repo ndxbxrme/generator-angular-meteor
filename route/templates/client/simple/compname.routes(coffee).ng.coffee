@@ -5,6 +5,6 @@ angular.module '<%= appname %>'
   $stateProvider
   .state '<%= compname %>',
     url: '/<%= compnameSlugged %>'
-    templateUrl: '<%= dir %>/<%= compnameSlugged%>/<%=compnameSlugged%>.view.html'
+    templateUrl: '<%= dir %>/<%=compnameSlugged%>.view.html'
     controller: '<%= compnameCapped %>Ctrl'<% if(auth && protected) { %>
     authenticate: true<% } %>

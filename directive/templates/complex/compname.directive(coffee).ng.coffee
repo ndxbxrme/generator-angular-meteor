@@ -4,7 +4,7 @@ angular.module '<%= appname %>'
 .directive '<%= compname %>', () ->
   {
     restrict: 'EA'
-    templateUrl: '<%= templateurl %>'
+    templateUrl: '<%= dir %>/<%= compname %>.view.html'
     replace: true
     link: (scope, elem, attrs) ->
       scope.property = '<%=compname%>'

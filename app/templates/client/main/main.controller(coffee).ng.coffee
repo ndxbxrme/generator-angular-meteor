@@ -5,7 +5,7 @@ angular.module '<%= appname %>'
 <% if(pagination){ %>  $scope.page = 1
   $scope.perPage = 3
   $scope.sort = name_sort : 1
-  $scope.orderProperty = '1';
+  $scope.orderProperty = '1'
   
 <% } %>  $scope.things = $meteor.collection<% if(pagination){ %> () ->
     Things.find {}, {sort:$scope.getReactively('sort')}<% } else { %> Things<% } %>

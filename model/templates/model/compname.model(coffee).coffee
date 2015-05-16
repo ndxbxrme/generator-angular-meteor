@@ -7,7 +7,7 @@
     <% if(auth && protected) { %>userId<% } else { %>true<% } %>
   remove: (userId, <%= compnameSingular %>) ->
     <% if(auth && protected) { %>userId<% } else { %>true<% } %>
-
+<% if(pagination) { %>
 <%= compnameCapped %>.attachSchema new SimpleSchema
   name:
     type: String
@@ -20,4 +20,4 @@
       if name.isSet
         name.value.toLowerCase()
       else
-        @unset()
+        @unset()<% } %>

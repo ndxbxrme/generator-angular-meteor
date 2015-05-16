@@ -1,8 +1,8 @@
-form(ng-submit='save()', name='form', novalidate='', layout='row')
+.main(layout='row')
   span(flex='')
   div(layout='column')
     h1 Things
-    .md-whiteframe-z1(layout-padding='')
+    form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
       p Add a thing
       md-input-container
         label Name
@@ -23,7 +23,7 @@ form(ng-submit='save()', name='form', novalidate='', layout='row')
 <% if(pagination) { %>      li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count')
         p {{ thing.name }}
           button(ng-click='remove(thing)') &times;
-    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+    dir-pagination-controls(on-page-change='pageChanged(newPageNumber)')
 <% } else { %>      li(ng-repeat='thing in things')
         p {{thing.name}}
           button(ng-click='remove(thing)') &times;

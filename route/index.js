@@ -26,8 +26,7 @@ module.exports = yeoman.generators.Base.extend({
       this.filters.compnameCapped = _.capitalize(this.filters.compname);
       this.filters.compnameCappedSingular = _i.singularize(this.filters.compnameCapped);
       if(this.filters.compname===this.filters.compnameSingular) {
-        this.log('Route name should be plural');
-        return;
+        this.log('If you are planning to create a model or list/detail views it is recommended you use a plural route name');
       }
     }
     else {
@@ -49,7 +48,7 @@ module.exports = yeoman.generators.Base.extend({
       default: true,
       when: function() {
         return this.filters.auth; 
-      }
+      }.bind(this)
     }, {
       type:'confirm',
       name: 'complex',
@@ -59,11 +58,17 @@ module.exports = yeoman.generators.Base.extend({
       type:'confirm',
       name: 'model',
       message: 'Would you like to create a Model?',
-      default: true
+      default: true,
+      when: function(answers) {
+        return !answers.complex; 
+      }
     }], function (answers) {
-        this.filters.dir = answers.dir.replace(/\/$/, '');
+        this.filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '');
         this.filters.complex = !!answers.complex;
         this.filters.model = !!answers.model;
+        if(this.filters.complex) {
+          this.filters.model = true; 
+        }
         this.filters.protected = !!answers.protected;
       cb();
       }.bind(this));

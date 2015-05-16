@@ -1,6 +1,18 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller '<%= compnameCapped%>DetailCtrl', ($scope, $stateParams, $meteor) ->
-  $scope.item = $meteor.object <%= compnameCapped %>, $stateParams.id, false
-  $meteor.subscribe '<%= compname %>'
+.controller '<%= compnameCappedSingular%>DetailCtrl', ($scope, $stateParams, $meteor) ->
+  $scope.<%= compnameSingular %> = $meteor.object <%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id
+  $scope.subscribe('<%=compname%>')
+  
+  $scope.save = () ->
+    if $scope.form.$valid
+      $scope.<%= compnameSingular %>.save().then(
+        (numberOfDocs) ->
+          console.log 'save successful, docs affected ', numberOfDocs
+        (error) ->
+          console.log 'save error ', error
+      )
+        
+  $scope.reset = () ->
+    $scope.<%= compnameSingular %>.reset()

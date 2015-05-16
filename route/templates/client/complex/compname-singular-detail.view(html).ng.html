@@ -1,0 +1,18 @@
+<div class="<%= compnameSingular %>-detail" layout="row">
+  <span flex=""></span>
+  <div layout="column">
+    <h1>Here are the details of the <%=compnameSingular%></h1>
+    <div class="md-whiteframe-z1" layout-padding>
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="<%= compnameSingular %>.name" placeholder="Name">
+      </md-input-container>  
+      <div layout="row">
+        <input class="md-button" type="submit" value="Save">
+        <md-button ng-click="reset()">Reset</md-button>
+        <md-button ng-click="/<%= compname %>">Cancel</md-button>
+      </div>
+    </div>
+  </div>
+  <span flex=""></span>
+</div>

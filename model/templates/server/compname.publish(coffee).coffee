@@ -1,7 +1,7 @@
 'use strict'
-<% if(auth){ %>
+<% if(pagination){ %>
 Meteor.publish '<%= compname %>', (options, searchString) ->
-  if searchString == null
+  if !searchString
     searchString = ''
   Counts.publish this, 'numberOf<%= compnameCapped %>', <%= compnameCapped %>.find(
     'name':

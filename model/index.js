@@ -41,13 +41,13 @@ module.exports = yeoman.generators.Base.extend({
     this.prompt([{
       type: 'confirm',
       name: 'protected',
-      message: 'Is this a protected route?',
+      message: 'Is this a protected model?',
       default: true,
       when: function() {
         return this.filters.auth; 
-      }
+      }.bind(this)
     }], function (answers) {
-        this.protected = answers.protected;
+        this.filters.protected = answers.protected;
       cb();
       }.bind(this));
   },

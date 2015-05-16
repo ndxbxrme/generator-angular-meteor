@@ -42,15 +42,15 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Does this directive need an external html file?',
       default: true
     }], function (answers) {
-        this.dir = answers.dir.replace(/\/$/, '');
-        this.complex = !!answers.complex;
+        this.filters.dir = answers.dir.replace(/\/$/, '');
+        this.filters.complex = !!answers.complex;
       cb();
       }.bind(this));
   },
   write: function() {
-    this.sourceRoot(path.join(__dirname, './templates/') + (this.complex ? 'complex' : 'simple'));
-    this.dir = this.dir + '/' + this.compname;
-    this.destinationRoot(path.join(process.cwd(), this.dir));
+    this.sourceRoot(path.join(__dirname, './templates/') + (this.filters.complex ? 'complex' : 'simple'));
+    this.filters.dir = this.filters.dir + '/' + this.filters.compname;
+    this.destinationRoot(path.join(process.cwd(), this.filters.dir));
     genUtils.write(this, this.filters);
   }
 });
