@@ -28,6 +28,7 @@ function write(self, options, cb) {
   var files = glob('**', { dot: true, cwd: self.sourceRoot() }, function(err, files) {
     var src, dest;
     files.forEach(function(f) {
+      console.log(f);
       if(f.search(/\.(js|coffee|html|jade|css|scss|less|styl)$/)>-1 || f.indexOf('_')===0) {
         for(var filter in self.filters) {
           if(self.filters[filter]) {
@@ -50,6 +51,9 @@ function write(self, options, cb) {
             }
           }
         }
+      }
+      else if(f.search(/\.(ico)$/)>-1) {
+        self.copy(self.templatePath(f), self.destinationPath(f));
       }
     }.bind(self));
     if(cb) {
