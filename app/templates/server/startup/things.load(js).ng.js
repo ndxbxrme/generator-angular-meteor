@@ -2,19 +2,25 @@ Meteor.startup(function() {
   if(Things.find().count() === 0) {
     var things = [
       {
-        'name': 'Thing 1'
+        name: 'Data on the Wire'
       },
       {
-        'name': 'Thing 2'
+        name: 'One Language'
       },
       {
-        'name': 'Thing 3'
+        name: 'Database Everywhere'
       },
       {
-        'name': 'Thing 4'
+        name: 'Latency Compensation'
       },
       {
-        'name': 'Thing 5'
+        name: 'Full Stack Reactivity'
+      },
+      {
+        name: 'Embrace the Ecosystem'
+      },
+      {
+        name: 'Simplicity Equals Productivity'
       }
     ];
     things.forEach(function(thing) {

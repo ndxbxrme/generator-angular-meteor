@@ -5,5 +5,5 @@ angular.module '<%= appname %>'
   $stateProvider
   .state 'main',
     url: '/'
-    templateUrl: 'client/main/main.view.html'
+    templateUrl: 'client/main/main.view<%if(!jade) {%>.ng<%}%>.html'
     controller: 'MainCtrl'

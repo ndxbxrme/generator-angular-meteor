@@ -45,7 +45,7 @@ module.exports = yeoman.generators.Base.extend({
       type: 'confirm',
       name: 'protected',
       message: 'Is this a protected route?',
-      default: true,
+      default: false,
       when: function() {
         return this.filters.auth; 
       }.bind(this)

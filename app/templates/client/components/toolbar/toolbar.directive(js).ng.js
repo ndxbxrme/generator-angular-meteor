@@ -4,7 +4,7 @@ angular.module('<%= appname %>')
 .directive('toolbar', function() {
   return {
     restrict: 'AE',
-    templateUrl: 'client/components/toolbar/toolbar.view.ng.html',
+    templateUrl: 'client/components/toolbar/toolbar.view<%if(!jade) {%>.ng<%}%>.html',
     replace: true
   };
 });
