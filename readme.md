@@ -10,9 +10,9 @@ Install `generator-angular-meteor`:
 npm install -g generator-angular-meteor
 ```
 
-Run `yo angular-meteor [app-name]`
+Run `yo angular-meteor appName`
 ```
-yo angular-meteor [app-name]
+yo angular-meteor appName
 ```
 
 cd into the new directory to run `meteor` commands or to create subcomponents
@@ -20,8 +20,8 @@ cd into the new directory to run `meteor` commands or to create subcomponents
 ## Prerequisites
 
 * Meteor
-    - 'windows' Download and Install [Meteor](https://www.meteor.com/)
-    - 'linux/mac' `curl https://install.meteor.com/ | sh`
+    - *windows* -  Download and Install [Meteor](https://www.meteor.com/)
+    - *linux/mac* - `curl https://install.meteor.com/ | sh`
 
 ## Supported Configurations
 
