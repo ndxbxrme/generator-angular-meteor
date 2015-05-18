@@ -7,6 +7,10 @@ angular.module('<%= appname %>')
     url: '/<%= compnameSlugged %>',
     templateUrl: '<%= dir %>/<%=compnameSlugged%>.view.html',
     controller: '<%= compnameCapped %>Ctrl'<% if(auth && protected) { %>,
-    authenticate: true<% } %>
+    resolve: {
+      currentUser: ['$meteor', function($meteor) {
+        return $meteor.requireUser();
+      }]
+    }<% } %>
   });
 });
