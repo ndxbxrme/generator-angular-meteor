@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.factory '<%= compname %>', () ->
+.factory '<%= compname %>', [() ->
   
   # Private API
   meaningOfLife = 42
@@ -9,3 +9,4 @@ angular.module '<%= appname %>'
   # Public API
   someMethod: () ->
     meaningOfLife
+]

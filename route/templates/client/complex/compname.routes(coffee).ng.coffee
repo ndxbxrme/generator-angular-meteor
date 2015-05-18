@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.config ($stateProvider) ->
+.config ['$stateProvider', ($stateProvider) ->
   $stateProvider
   .state '<%= compname %>-list',
     url: '/<%= compnameSlugged %>'
@@ -13,3 +13,4 @@ angular.module '<%= appname %>'
     templateUrl: '<%= dir %>/<%=compnameSluggedSingular%>-detail.view<%if(!jade) {%>.ng<%}%>.html'
     controller: '<%= compnameCappedSingular %>DetailCtrl'<% if(auth && protected) { %>
     authenticate: true<% } %>
+]

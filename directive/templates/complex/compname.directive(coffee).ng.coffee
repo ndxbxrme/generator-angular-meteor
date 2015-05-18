@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.directive '<%= compname %>', () ->
+.directive '<%= compname %>', [() ->
   {
     restrict: 'EA'
     templateUrl: '<%= dir %>/<%= compname %>.view<%if(!jade) {%>.ng<%}%>.html'
@@ -9,3 +9,4 @@ angular.module '<%= appname %>'
     link: (scope, elem, attrs) ->
       scope.property = '<%=compname%>'
   }
+]

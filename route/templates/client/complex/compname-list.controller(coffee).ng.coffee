@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller '<%= compnameCapped%>ListCtrl', ($scope, $meteor) ->
+.controller '<%= compnameCapped%>ListCtrl', ['$scope', '$meteor', ($scope, $meteor) ->
 <% if(pagination){ %>  $scope.page = 1
   $scope.perPage = 3
   $scope.sort = name_sort : 1
@@ -31,3 +31,4 @@ angular.module '<%= appname %>'
   $scope.$watch 'orderProperty', () ->
     if $scope.orderProperty
       $scope.sort = name_sort: parseInt($scope.orderProperty)<% } %>
+]

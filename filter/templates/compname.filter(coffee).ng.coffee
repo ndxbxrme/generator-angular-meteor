@@ -1,6 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.filter '<%= compname %>', ->
+.filter '<%= compname %>', [() ->
   (input) ->
     '<%= compname %> filter: ' + input
+]
