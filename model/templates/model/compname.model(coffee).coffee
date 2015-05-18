@@ -7,17 +7,3 @@
     <% if(auth && protected) { %>userId<% } else { %>true<% } %>
   remove: (userId, <%= compnameSingular %>) ->
     <% if(auth && protected) { %>userId<% } else { %>true<% } %>
-<% if(pagination) { %>
-<%= compnameCapped %>.attachSchema new SimpleSchema
-  name:
-    type: String
-    label: 'name'
-  name_sort:
-    type: String
-    optional: true
-    autoValue: () ->
-      name = this.field('name')
-      if name.isSet
-        name.value.toLowerCase()
-      else
-        @unset()<% } %>

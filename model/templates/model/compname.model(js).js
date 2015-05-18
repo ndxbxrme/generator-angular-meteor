@@ -11,23 +11,3 @@
     <% if(auth && protected) { %>return userId<% } else { %>return true<% } %>;
   }
 });
-<% if(pagination) { %>
-<%= compnameCapped %>.attachSchema(new SimpleSchema({
-  name: {
-    type: String,
-    label: 'name'
-  },
-  name_sort: {
-    type: String,
-    optional: true,
-    autoValue: function() {
-      var name = this.field('name');
-      if(name.isSet) {
-        return name.value.toLowerCase();
-      }
-      else {
-        return this.unset();
-      }
-    }
-  }
-}));<% } %>
