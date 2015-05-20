@@ -39,6 +39,7 @@ Available generators:
 
     - [angular-meteor](#app) (aka [angular-meteor:app](#app))
     - [angular-meteor:model](#model)
+    - [angular-meteor:method](#method)
     - [angular-meteor:route](#route)
     - [angular-meteor:controller](#controller)
     - [angular-meteor:view](#view)
@@ -71,6 +72,19 @@ Produces:
     model/products.model.coffee
     server/products.publish.coffee
     server/startup/products.load.coffee
+
+### Method
+Generates a new meteor method.
+
+
+Example:
+```bash
+yo angular-meteor:method invite
+```
+
+Produces:
+
+    methods/invite.method.coffee
 
 ### Route
 Generates a new route with optional model and list/detail routes

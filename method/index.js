@@ -25,9 +25,6 @@ module.exports = yeoman.generators.Base.extend({
       this.filters.compnameSluggedSingular = _i.singularize(this.filters.compnameSlugged);
       this.filters.compnameCapped = _.capitalize(this.filters.compname);
       this.filters.compnameCappedSingular = _i.singularize(this.filters.compnameCapped);
-      if(this.filters.compname===this.filters.compnameSingular) {
-        this.log('It is recommended to use a plural model name');
-      }
     }
     else {
       this.log('Cannot find the config file (.yo-rc.json)');
@@ -35,24 +32,9 @@ module.exports = yeoman.generators.Base.extend({
     }
     cb();
   },
-  askFor: function() {
-    var cb = this.async();
-    this.prompt([{
-      type: 'confirm',
-      name: 'protected',
-      message: 'Is this a protected model?',
-      default: true,
-      when: function() {
-        return this.filters.auth; 
-      }.bind(this)
-    }], function (answers) {
-        this.filters.protected = answers.protected;
-      cb();
-      }.bind(this));
-  },
   write: function() {
     this.sourceRoot(path.join(__dirname, './templates'));
-    this.dir = '';
+    this.dir = 'methods';
     this.destinationRoot(path.join(process.cwd(), this.dir));
     genUtils.write(this, this.filters);
   }
