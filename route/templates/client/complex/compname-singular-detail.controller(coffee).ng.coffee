@@ -3,7 +3,7 @@
 angular.module '<%= appname %>'
 .controller '<%= compnameCappedSingular%>DetailCtrl', ['$scope', '$stateParams', '$meteor', ($scope, $stateParams, $meteor) ->
   $scope.<%= compnameSingular %> = $meteor.object <%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id
-  $scope.subscribe('<%=compname%>')
+  $meteor.subscribe('<%=compname%>')
   
   $scope.save = () ->
     if $scope.form.$valid
