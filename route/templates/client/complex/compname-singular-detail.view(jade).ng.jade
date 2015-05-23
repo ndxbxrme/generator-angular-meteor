@@ -2,7 +2,7 @@
   span(flex='')
   div(layout='column')
     h1 Here are the details of the <%=compnameSingular%>
-    .md-whiteframe-z1(layout-padding='')
+    form.md-whiteframe-z1(name='form', ng-submit='save()', layout-padding='')
       md-input-container
         label Name
         input(ng-model='<%= compnameSingular %>.name', placeholder='Name')
