@@ -42,7 +42,7 @@ module.exports = yeoman.generators.Base.extend({
       message: 'Does this directive need an external html file?',
       default: true
     }], function (answers) {
-        this.filters.dir = answers.dir.replace(/\/$/, '');
+        this.filters.dir = answers.dir.replace(/\/$/, '').replace(/^\//, '');
         this.filters.complex = !!answers.complex;
       cb();
       }.bind(this));
