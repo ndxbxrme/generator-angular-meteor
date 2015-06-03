@@ -28,13 +28,13 @@
 <% } } %>
 <% if(pagination) { %>    <ul>
       <li dir-paginate="<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage" total-items="<%= compname %>Count.count">
-        <p>{{ <%= compnameSingular %>.name }} <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
+        <p><a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a> <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
       </li>
     </ul>
     <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
 <% } else { %>    <ul>
       <li ng-repeat="<%= compnameSingular %> in <%= compname %>">
-        <p>{{ <%= compnameSingular %>.name }} <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
+        <p><a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a> <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
       </li>
     </ul>
 <% } %>

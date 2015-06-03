@@ -22,12 +22,12 @@
     ul
 <% if(pagination) { %>      li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count')
         p 
-          a(href='/<%=compname%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
+          a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
           button(ng-click='remove(<%= compnameSingular %>)') &times;
     dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
 <% } else { %>      li(ng-repeat='<%= compnameSingular %> in <%= compname %>')
         p 
-          a(href='/<%=compname%>/{{<%= compnameSingular %>._id}}') {{<%= compnameSingular %>.name}}
+          a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{<%= compnameSingular %>.name}}
           button(ng-click='remove(<%= compnameSingular %>)') &times;
 <% } %>
     p Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count.count<% } else { %><%= compname %>.length<% } %>}}
