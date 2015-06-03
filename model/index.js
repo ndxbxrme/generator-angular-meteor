@@ -8,7 +8,7 @@ var genUtils = require('../util.js');
 module.exports = yeoman.generators.Base.extend({
   init: function() {
     this.argument('compname', {type: String, required: true});
-    this.compname = _.slugify(_.humanize(this.compname));
+    this.compname = _.decapitalize(_.camelize(this.compname));
   },
   info: function() {
     //this.log(this.yeoman);
@@ -21,7 +21,7 @@ module.exports = yeoman.generators.Base.extend({
       this.filters.projectname = this.config.get('appname');
       this.filters.compname = _.camelize(this.compname);
       this.filters.compnameSingular = _i.singularize(this.compname);
-      this.filters.compnameSlugged = this.compname;
+      this.filters.compnameSlugged = _.dasherize(this.compname);
       this.filters.compnameSluggedSingular = _i.singularize(this.filters.compnameSlugged);
       this.filters.compnameCapped = _.capitalize(this.filters.compname);
       this.filters.compnameCappedSingular = _i.singularize(this.filters.compnameCapped);

@@ -42,7 +42,11 @@ function write(self, options, cb) {
               try {
                 self.fs.copyTpl(
                   self.templatePath(f),
-                  self.destinationPath(newname.replace(/^_/, '').replace('compname-singular',options.compnameSingular).replace('compname', self.compname)),
+                  self.destinationPath(
+                    newname.replace(/^_/, '')
+                    .replace('compname-singular',options.compnameSluggedSingular || options.compnameSingular)
+                    .replace('compname', options.compnameSlugged || self.compname)
+                  ),
                   options
                 );
               }

@@ -8,7 +8,7 @@ var genUtils = require('../util.js');
 module.exports = yeoman.generators.Base.extend({
   init: function() {
     this.argument('compname', {type: String, required: false});
-    this.compname = _.slugify(_.humanize(this.compname));
+    this.compname = _.decapitalize(_.camelize(this.compname));
   },
   info: function() {
     //this.log(this.yeoman);
@@ -21,7 +21,7 @@ module.exports = yeoman.generators.Base.extend({
       this.filters.projectname = this.config.get('appname');
       this.filters.compname = _.camelize(this.compname);
       this.filters.compnameSingular = _i.singularize(this.compname);
-      this.filters.compnameSlugged = this.compname;
+      this.filters.compnameSlugged = _.dasherize(this.compname);
       this.filters.compnameSluggedSingular = _i.singularize(this.filters.compnameSlugged);
       this.filters.compnameCapped = _.capitalize(this.filters.compname);
       this.filters.compnameCappedSingular = _i.singularize(this.filters.compnameCapped);
@@ -75,7 +75,7 @@ module.exports = yeoman.generators.Base.extend({
   },
   write: function() {
     this.sourceRoot(path.join(__dirname, './templates/client/' + (this.filters.complex ? 'complex' : 'simple')));
-    this.filters.dir = this.filters.dir + '/' + this.compname;
+    this.filters.dir = this.filters.dir + '/' + this.compnameSlugged;
     var baseDir = path.join(process.cwd(), '');
     this.destinationRoot(path.join(process.cwd(), this.filters.dir));
     genUtils.write(this, this.filters, function(){
