@@ -75,7 +75,7 @@ module.exports = yeoman.generators.Base.extend({
   },
   write: function() {
     this.sourceRoot(path.join(__dirname, './templates/client/' + (this.filters.complex ? 'complex' : 'simple')));
-    this.filters.dir = this.filters.dir + '/' + this.compnameSlugged;
+    this.filters.dir = this.filters.dir + '/' + this.filters.compnameSlugged;
     var baseDir = path.join(process.cwd(), '');
     this.destinationRoot(path.join(process.cwd(), this.filters.dir));
     genUtils.write(this, this.filters, function(){
