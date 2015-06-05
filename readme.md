@@ -28,6 +28,7 @@ cd into the new directory to run `meteor` commands or to create subcomponents
 * Scripts: `JavaScript`, `CoffeeScript`
 * Markup:  `HTML`, `Jade`
 * Stylesheets: `CSS`, `Stylus`
+* CSS frameworks: `Angular material`, `Bootstrap`
 * Authentication boilerplate: `Yes`, `No`
 * oAuth integrations: `Facebook` `Twitter` `Google`
 * Pagination, sorting and searching support: `Yes`, `No`
@@ -177,6 +178,8 @@ The following packages are always installed by the [app](#app) generator:
 These packages are installed optionally depending on your configuration:
 
 * angular-material
+* bootstrap'
+* angular-ui-bootstrap
 * publish-counts
 * collection2
 * pagination
