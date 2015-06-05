@@ -77,7 +77,7 @@ module.exports = yeoman.generators.Base.extend(
     ).bind(this)
     return
   write: ->
-    @sourceRoot path.join(__dirname, './templates/client/' + (if @filters.complex then 'complex' else 'simple'))
+    @sourceRoot path.join(__dirname, './templates/' + (@filters.framework or 'none') + '/client/' + (if @filters.complex then 'complex' else 'simple'))
     @filters.dir = @filters.dir + '/' + @filters.compnameSlugged
     baseDir = path.join(process.cwd(), '')
     @destinationRoot path.join(process.cwd(), @filters.dir)

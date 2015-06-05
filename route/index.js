@@ -88,7 +88,7 @@
     },
     write: function() {
       var baseDir;
-      this.sourceRoot(path.join(__dirname, './templates/client/' + (this.filters.complex ? 'complex' : 'simple')));
+      this.sourceRoot(path.join(__dirname, './templates/' + (this.filters.framework || 'none') + '/client/' + (this.filters.complex ? 'complex' : 'simple')));
       this.filters.dir = this.filters.dir + '/' + this.filters.compnameSlugged;
       baseDir = path.join(process.cwd(), '');
       this.destinationRoot(path.join(process.cwd(), this.filters.dir));

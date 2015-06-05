@@ -88,9 +88,22 @@
           name: 'pagination',
           message: 'Would you like pagination, sorting and searching support?'
         }, {
-          type: 'confirm',
-          name: 'material',
-          message: 'Would you like to include Angular Material?'
+          type: 'list',
+          name: 'framework',
+          message: 'Select a CSS framework',
+          "default": 1,
+          choices: ['None', 'Angular Material', 'Bootstrap'],
+          filter: function(val) {
+            var filterMap;
+            filterMap = {
+              'None': 'none',
+              'Angular Material': 'material',
+              'Bootstrap': 'bootstrap',
+              'PureCSS': 'purecss',
+              'Foundation for Apps': 'foundationapps'
+            };
+            return filterMap[val];
+          }
         }, {
           type: 'confirm',
           name: 'bower',
@@ -102,7 +115,7 @@
         this.filters[answers.markup] = true;
         this.filters[answers.stylesheet] = true;
         this.filters.pagination = !!answers.pagination;
-        this.filters.material = !!answers.material;
+        this.filters.framework = answers.framework;
         this.filters.bower = !!answers.bower;
         cb();
       }).bind(this));
@@ -210,9 +223,20 @@
       if (this.filters.jade) {
         meteorToAdd.push('civilframe:angular-jade');
       }
-      if (this.filters.material) {
+      if (this.filters.framework === 'material') {
         meteorToAdd.push('angular:angular-material');
         angularModules.push('ngMaterial');
+      }
+      if (this.filters.framework === 'bootstrap') {
+        meteorToAdd.push('twbs:bootstrap');
+        meteorToAdd.push('angularui:angular-ui-bootstrap');
+        angularModules.push('ui.bootstrap');
+      }
+      if (this.filters.framework === 'purecss') {
+        meteorToAdd.push('mrt:purecss');
+      }
+      if (this.filters.framework === 'foundationapps') {
+        meteorToAdd.push('rainhaven:foundation-apps');
       }
       if (this.filters.bower) {
         meteorToAdd.push('mquandalle:bower');
@@ -249,7 +273,7 @@
       this.filters.appname = this.appname + 'App';
       this.filters.projectname = this.config.get('appname');
       this.filters.modules = '\'' + (this.filters.js ? angularModules.join('\',\n  \'') : angularModules.join('\'\n  \'')) + '\'';
-      this.sourceRoot(path.join(__dirname, './templates'));
+      this.sourceRoot(path.join(__dirname, './templates/' + this.filters.framework));
       genUtils.write(this, this.filters);
     },
     launchMeteor: function() {

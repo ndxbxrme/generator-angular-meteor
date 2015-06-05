@@ -1,0 +1,7 @@
+md-toolbar.toolbar(layout='row', layout-align='start center', layout-padding='')
+  .navbar-left(layout='row', layout-align='center center')<% if(auth) { %>
+    meteor-include(src='loginButtons')<% } %>
+    md-button(ng-href='/about') About
+  span(flex='')
+  .navbar-right 
+    a(href='/') <%= appname %>

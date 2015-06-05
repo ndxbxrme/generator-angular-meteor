@@ -1,0 +1,29 @@
+.<%= compname%>-list.container
+  h1 <%= compnameCapped %>
+  form(ng-submit='save()', name='form', novalidate='')
+    p.input-group
+      input.form-control(type='text', placeholder='Name', ng-model='new<%= compnameCappedSingular %>.name')
+      span.input-group-btn
+        input.btn.btn-primary(type='submit', value='Add')
+  .panel.panel-default
+    .panel-body<% if(pagination) { %>
+      .input-group.pull-right.col-md-3.col-sm-12
+        input.form-control(type='search', ng-model='search', placeholder='Search')
+        .dropdown.input-group-btn(dropdown='', on-toggle='toggled(open)')
+          button.btn.btn-primary.dropdown-toggle(dropdown-toggle='') {{ orderProperty==='1' ? 'Ascending' : 'Descending' }}
+            span.caret
+          ul.dropdown-menu(role='menu')
+            li(ng-click="orderProperty='1'") Ascending
+            li(ng-click="orderProperty='-1'") Descending
+      ul.nav.nav-tabs.nav-stacked.col-md-9.col-sm-12
+        li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count')
+          p
+            a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
+            button.btn(ng-click='remove(<%= compnameSingular %>)') &times;
+      dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')<% } else { %>
+      ul.nav.nav-tabs.nav-stacked.col-md-9.col-sm-12
+        li(ng-repeat='<%= compnameSingular %> in <%= compname %>')
+          p 
+            a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
+            button.btn(ng-click='remove(<%= compnameSingular %>)') &times;<% } %>
+  p Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count.count<% } else { %><%= compname %>.length<% } %>}}

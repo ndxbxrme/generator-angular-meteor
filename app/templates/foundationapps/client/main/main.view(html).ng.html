@@ -1,0 +1,35 @@
+<div class="main">
+  <h1>Things</h1>
+  <form ng-submit="save()" name="form" novalidate>
+    <p>Add a thing</p>
+    <div>
+      <label>Name</label>
+      <input ng-model="newThing.name" placeholder="Name">
+    </div>
+    <input class="md-button" type="submit" value="Add">
+  </form>
+<% if(pagination) {%>    <div class="controls">
+    <div>
+      <label>Search</label>
+      <input type="Search" ng-model="search" placeholder="Search">
+    </div>
+    <select ng-model="orderProperty" flex="35">
+      <option value="1">Ascending</option>
+      <option value="-1">Descending</option>
+    </select>
+  </div>
+<% } %>
+<% if(pagination) { %>    <ul>
+    <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount.count">
+      <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
+    </li>
+  </ul>
+  <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+<% } else { %>    <ul>
+    <li ng-repeat="thing in things">
+      <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
+    </li>
+  </ul>
+<% } %>
+  <p>Total number of things: {{<% if(pagination) {%>thingsCount.count<% } else { %>things.length<% } %>}}</p>
+</div>

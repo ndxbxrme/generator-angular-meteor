@@ -1,0 +1,39 @@
+<div class="main" layout="row">
+  <span flex=""></span>
+  <div layout="column">
+    <h1>Things</h1>
+    <form class="md-whiteframe-z1" ng-submit="save()" name="form" novalidate layout-padding="">
+      <p>Add a thing</p>
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="newThing.name" placeholder="Name">
+      </md-input-container>
+      <input class="md-button" type="submit" value="Add">
+    </form>
+<% if(pagination) {%>    <div layout="row" layout-padding="">
+      <md-input-container flex="65">
+        <label>Search</label>
+        <input type="Search" ng-model="search" placeholder="Search">
+      </md-input-container>
+      <md-select ng-model="orderProperty" flex="35">
+        <md-option value="1">Ascending</md-option>
+        <md-option value="-1">Descending</md-option>
+      </md-select>
+    </div>
+<% } %>
+<% if(pagination) { %>    <ul>
+      <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount.count">
+        <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
+      </li>
+    </ul>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+<% } else { %>    <ul>
+      <li ng-repeat="thing in things">
+        <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
+      </li>
+    </ul>
+<% } %>
+    <p>Total number of things: {{<% if(pagination) {%>thingsCount.count<% } else { %>things.length<% } %>}}</p>
+  </div>
+  <span flex=""></span>
+</div>

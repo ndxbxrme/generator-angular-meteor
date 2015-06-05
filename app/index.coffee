@@ -89,9 +89,23 @@ module.exports = yeoman.generators.Base.extend(
         message: 'Would you like pagination, sorting and searching support?'
       }
       {
-        type: 'confirm'
-        name: 'material'
-        message: 'Would you like to include Angular Material?'
+        type: 'list'
+        name: 'framework'
+        message: 'Select a CSS framework'
+        default: 1
+        choices: [
+          'None'
+          'Angular Material'
+          'Bootstrap'
+        ]
+        filter: (val) ->
+          filterMap = 
+            'None': 'none'
+            'Angular Material': 'material'
+            'Bootstrap': 'bootstrap'
+            'PureCSS': 'purecss'
+            'Foundation for Apps': 'foundationapps'
+          filterMap[val]
       }
       {
         type: 'confirm'
@@ -104,7 +118,7 @@ module.exports = yeoman.generators.Base.extend(
       @filters[answers.markup] = true
       @filters[answers.stylesheet] = true
       @filters.pagination = ! !answers.pagination
-      @filters.material = ! !answers.material
+      @filters.framework = answers.framework
       @filters.bower = ! !answers.bower
       cb()
       return
@@ -215,9 +229,17 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'mquandalle:stylus'
     if @filters.jade
       meteorToAdd.push 'civilframe:angular-jade'
-    if @filters.material
+    if @filters.framework is 'material'
       meteorToAdd.push 'angular:angular-material'
       angularModules.push 'ngMaterial'
+    if @filters.framework is 'bootstrap'
+      meteorToAdd.push 'twbs:bootstrap'
+      meteorToAdd.push 'angularui:angular-ui-bootstrap'
+      angularModules.push 'ui.bootstrap'
+    if @filters.framework is 'purecss'
+      meteorToAdd.push 'mrt:purecss'
+    if @filters.framework is 'foundationapps'
+      meteorToAdd.push 'rainhaven:foundation-apps'
     if @filters.bower
       meteorToAdd.push 'mquandalle:bower'
     if @filters.pagination
@@ -251,7 +273,7 @@ module.exports = yeoman.generators.Base.extend(
     @filters.appname = @appname + 'App'
     @filters.projectname = @config.get('appname')
     @filters.modules = '\'' + (if @filters.js then angularModules.join('\',\n  \'') else angularModules.join('\'\n  \'')) + '\''
-    @sourceRoot path.join(__dirname, './templates')
+    @sourceRoot path.join(__dirname, './templates/' + @filters.framework)
     genUtils.write this, @filters
     return
   launchMeteor: ->

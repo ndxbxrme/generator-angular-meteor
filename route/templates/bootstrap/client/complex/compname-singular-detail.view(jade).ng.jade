@@ -1,0 +1,7 @@
+.<%= compnameSingular %>-detail.container
+  h1 Here are the details of the <%= compnameSingular %>
+  form(ng-submit='save()', name='form', novalidate='')
+    input.form-control(type='text', placeholder='Name', ng-model='<%= compnameSingular %>.name')
+    span.input-group-btn
+      input.btn.btn-primary(type='submit', value='Save')
+      input.btn(type='button', ng-click='reset()', value='Reset')

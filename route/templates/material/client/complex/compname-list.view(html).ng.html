@@ -1,0 +1,39 @@
+<div class="<%= compname %>-list" layout="row">
+  <span flex=""></span>
+  <div layout="column">
+    <h1><%= compnameCapped %></h1>
+    <form class="md-whiteframe-z1" ng-submit="save()" name="form" novalidate layout-padding="">
+      <p>Add a <%= compnameSingular %></p>
+      <md-input-container>
+        <label>Name</label>
+        <input ng-model="new<%= compnameCappedSingular %>.name" placeholder="Name">
+      </md-input-container>
+      <input class="md-button" type="submit" value="Add">
+    </form>
+<% if(pagination) {%>    <div layout="row" layout-padding="">
+      <md-input-container flex="65">
+        <label>Search</label>
+        <input type="Search" ng-model="search" placeholder="Search">
+      </md-input-container>
+      <md-select ng-model="orderProperty" flex="35">
+        <md-option value="1">Ascending</md-option>
+        <md-option value="-1">Descending</md-option>
+      </md-select>
+    </div>
+<% } %>
+<% if(pagination) { %>    <ul>
+      <li dir-paginate="<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage" total-items="<%= compname %>Count.count">
+        <p><a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a> <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
+      </li>
+    </ul>
+    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+<% } else { %>    <ul>
+      <li ng-repeat="<%= compnameSingular %> in <%= compname %>">
+        <p><a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a> <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
+      </li>
+    </ul>
+<% } %>
+    <p>Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count.count<% } else { %><%= compname %>.length<% } %>}}</p>
+  </div>
+  <span flex=""></span>
+</div>

@@ -1,0 +1,31 @@
+.<%= compname%>-list(layout='row')
+  span(flex='')
+  div(layout='column')
+    h1 <%= compnameCapped %>
+    form.md-whiteframe-z1(ng-submit='save()', name='form', novalidate='', layout-padding='')
+      p Add a <%= compnameSingular %>
+      md-input-container
+        label Name
+        input(ng-model='new<%= compnameCappedSingular %>.name', placeholder='Name')
+      input.md-button(type='submit', value='Add')
+    <% if(pagination) {%>div(layout='row', layout-padding='')
+      md-input-container(flex='65')
+        label Search
+        input(type='search', ng-model='search', placeholder='Search')
+      md-select(ng-model='orderProperty', flex='35')
+        md-option(value='1') Ascending
+        md-option(value='-1') Descending
+<% } %>
+    ul
+<% if(pagination) { %>      li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count')
+        p 
+          a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
+          button(ng-click='remove(<%= compnameSingular %>)') &times;
+    dir-pagination-controls.md-accent(on-page-change='pageChanged(newPageNumber)')
+<% } else { %>      li(ng-repeat='<%= compnameSingular %> in <%= compname %>')
+        p 
+          a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{<%= compnameSingular %>.name}}
+          button(ng-click='remove(<%= compnameSingular %>)') &times;
+<% } %>
+    p Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count.count<% } else { %><%= compname %>.length<% } %>}}
+  span(flex='')
