@@ -25,8 +25,6 @@ write = (self, options, cb) ->
         for filter of self.filters
           if self.filters[filter]
             if f.indexOf('(' + filter + ')') != -1 or f.indexOf('(') == -1
-              if !self.filters.material and f.indexOf('theme') != -1
-                break
               newname = f.replace('(' + filter + ')', '')
               try
                 self.fs.copyTpl self.templatePath(f), self.destinationPath(newname.replace(/^_/, '').replace('compname-singular', options.compnameSluggedSingular or options.compnameSingular).replace('compname', options.compnameSlugged or self.compname)), options
