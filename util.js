@@ -35,9 +35,6 @@
           for (filter in self.filters) {
             if (self.filters[filter]) {
               if (f.indexOf('(' + filter + ')') !== -1 || f.indexOf('(') === -1) {
-                if (!self.filters.material && f.indexOf('theme') !== -1) {
-                  break;
-                }
                 newname = f.replace('(' + filter + ')', '');
                 try {
                   self.fs.copyTpl(self.templatePath(f), self.destinationPath(newname.replace(/^_/, '').replace('compname-singular', options.compnameSluggedSingular || options.compnameSingular).replace('compname', options.compnameSlugged || self.compname)), options);
