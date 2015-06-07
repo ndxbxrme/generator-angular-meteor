@@ -96,7 +96,8 @@ module.exports = yeoman.generators.Base.extend(
         choices: [
           'None'
           'Angular Material'
-          'Bootstrap'
+          'Bootstrap',
+          'PureCSS'
         ]
         filter: (val) ->
           filterMap = 
