@@ -1,9 +1,15 @@
-<div class="toolbar">
-  <span class="navbar-left"><% if(auth) { %>
-    <meteor-include src="loginButtons"></meteor-include><% } %>
-    <a ng-href="/about">About</a>
-  </span>
-  <span>
-    <a href="/"><%= appname %></a>
-  </span>
+<div class="navbar navbar-default navbar-static-top">
+  <div class="container">
+    <div class="navbar-header">
+      <button type="button" ng-click="isCollapsed = !isCollapsed" class="navbar-toggle"><span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button><a href="/" class="navbar-brand"><%= appname %></a>
+    </div>
+    <div collapse="!isCollapsed" class="navbar-main navbar-collapse collapse">
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/about">About</a></li><% if(auth) { %>
+        <li>
+          <meteor-include src="loginButtons"></meteor-include>
+        </li><% } %>
+      </ul>
+    </div>
+  </div>
 </div>
