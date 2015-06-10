@@ -2,6 +2,15 @@
   padding: 10px 15px;
   line-height: 20px;
 }
+
+.navbar-collapse.in {
+  overflow: visible!important;
+}
+  
+.navbar-collapse.in #login-dropdown-list {
+  left: 0px!important;
+}
+
 @media (min-width: 768px) {
   #login-buttons {
     padding-top: 15px;
