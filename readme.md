@@ -28,7 +28,7 @@ cd into the new directory to run `meteor` commands or to create subcomponents
 * Scripts: `JavaScript`, `CoffeeScript`
 * Markup:  `HTML`, `Jade`
 * Stylesheets: `CSS`, `Stylus`
-* CSS frameworks: `None`, `Bootstrap`
+* CSS frameworks: `None`, `Bootstrap`, `Angular Material`
 * Authentication boilerplate: `Yes`, `No`
 * oAuth integrations: `Facebook` `Twitter` `Google`
 * Pagination, sorting and searching support: `Yes`, `No`

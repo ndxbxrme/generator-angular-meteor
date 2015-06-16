@@ -92,7 +92,7 @@
           name: 'framework',
           message: 'Select a CSS framework',
           "default": 1,
-          choices: ['None', 'Bootstrap'],
+          choices: ['None', 'Bootstrap', 'Angular Material'],
           filter: function(val) {
             var filterMap;
             filterMap = {
