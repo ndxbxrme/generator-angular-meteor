@@ -1,27 +1,16 @@
 Meteor.startup ->
   if Things.find().count() == 0
     things = [
-      {
-        name: 'Data on the Wire'
-      }
-      {
-        name: 'One Language'
-      }
-      {
-        name: 'Database Everywhere'
-      }
-      {
-        name: 'Latency Compensation'
-      }
-      {
-        name: 'Full Stack Reactivity'
-      }
-      {
-        name: 'Embrace the Ecosystem'
-      }
-      {
-        name: 'Simplicity Equals Productivity'
-      }
+      'Data on the Wire'
+      'One Language'
+      'Database Everywhere'
+      'Latency Compensation'
+      'Full Stack Reactivity'
+      'Embrace the Ecosystem'
+      'Simplicity Equals Productivity'
     ]
     things.forEach (thing) ->
-      Things.insert thing
+      Things.insert 
+        name: thing
+        name_sort: thing.toLowerCase()
+        createdAt: new Date()

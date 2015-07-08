@@ -243,7 +243,6 @@
       }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');
-        meteorToAdd.push('aldeed:collection2');
         meteorToAdd.push('angularutils:pagination');
         angularModules.push('angularUtils.directives.dirPagination');
       }

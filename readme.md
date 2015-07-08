@@ -181,7 +181,6 @@ These packages are installed optionally depending on your configuration:
 * bootstrap'
 * angular-ui-bootstrap
 * publish-counts
-* collection2
 * pagination
 
 ## Configuration
