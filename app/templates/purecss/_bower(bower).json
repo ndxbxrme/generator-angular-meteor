@@ -11,5 +11,10 @@
     "tests"
   ],
   "dependencies": {
+  },
+  "overrides": {
+    "angular": {
+      "main": [] 
+    }
   }
 }
