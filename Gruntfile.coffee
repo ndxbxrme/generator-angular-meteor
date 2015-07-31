@@ -27,7 +27,9 @@ module.exports = (grunt) ->
           ext: '.js'
         }]
     jshint:
-      options: node: true
+      options: 
+        node: true
+        sub: true
       all: [
         'Gruntfile.js'
         'generators/**/index.js'
