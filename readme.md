@@ -192,6 +192,10 @@ A `.yo-rc` file is generated for helping you copy configuration across projects,
 
 Still needs doing, let me know if you think you can help
 
+## Contributing
+
+Please see [CONTRIBUTING.md](/CONTRIBUTING.md)
+
 ## License
 
 [BSD license](http://opensource.org/licenses/bsd-license.php)
