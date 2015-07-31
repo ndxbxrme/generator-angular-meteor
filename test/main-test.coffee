@@ -21,18 +21,15 @@ describe 'angular-meteor generator', ->
   generatorTest = (generatorType, name, mockPrompt, callback) ->
     gen.run {}, ->
       amGenerator = undefined
-      deps = [ path.join('../..', generatorType) ]
+      deps = [ path.join('../../generators', generatorType) ]
       amGenerator = helpers.createGenerator('angular-meteor:' + generatorType, deps, [ name ])
       helpers.mockPrompt amGenerator, mockPrompt
       amGenerator.run [], ->
         callback()
-        return
-      return
-    return
 
   beforeEach (done) ->
     @timeout 10000
-    deps = [ '../../app' ]
+    deps = [ '../../generators/app' ]
     helpers.testDirectory path.join(__dirname, 'temp'), ((err) ->
       if err
         return done(err)
@@ -41,26 +38,20 @@ describe 'angular-meteor generator', ->
         'dontrun'
       ])
       done()
-      return
     ).bind(this)
-    return
   describe 'running app', ->
     describe 'with default options', ->
       beforeEach ->
         helpers.mockPrompt gen, defaultOptions
-        return
       it 'should run happily', (done) ->
         @timeout 60000
         gen.run ->
           done()
-          return
-        return
       it 'should pass jshint', (done) ->
         exec 'grunt jshint', (error, stdout, stderr) ->
           expect(stdout).to.contain 'Done, without errors.'
           done()
-          return
-        return
-      return
-    return
-  return
+      it 'should pass coffeelint', (done) ->
+        exec 'grunt coffeelint', (error, stdout, stderr) ->
+          expect(stdout).to.contain 'Done, without errors.'
+          done()
