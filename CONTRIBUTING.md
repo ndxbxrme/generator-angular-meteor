@@ -22,7 +22,7 @@
 ### directory tree
 ```
 |-- generators
-|    templates and compiled js lives in here
+|    templates and compiled js live in here
 |-- node_modules
 |     you know what this is
 |-- src
