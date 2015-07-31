@@ -78,7 +78,7 @@
           name: 'stylesheet',
           "default": 1,
           message: 'What would you like to write stylesheets with?',
-          choices: ['CSS', 'Stylus'],
+          choices: ['CSS', 'Stylus', 'Less', 'SCSS'],
           filter: function(val) {
             return val.toLowerCase();
           }
@@ -218,6 +218,12 @@
       }
       if (this.filters.stylus) {
         meteorToAdd.push('mquandalle:stylus');
+      }
+      if (this.filters.less) {
+        meteorToAdd.push('flemay:less-autoprefixer');
+      }
+      if (this.filters.scss) {
+        meteorToAdd.push('fourseven:scss');
       }
       if (this.filters.jade) {
         meteorToAdd.push('civilframe:angular-jade');

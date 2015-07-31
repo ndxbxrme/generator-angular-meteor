@@ -27,7 +27,7 @@ cd into the new directory to run `meteor` commands or to create subcomponents
 
 * Scripts: `JavaScript`, `CoffeeScript`
 * Markup:  `HTML`, `Jade`
-* Stylesheets: `CSS`, `Stylus`
+* Stylesheets: `CSS`, `Stylus`, `Less`, `SCSS`
 * CSS frameworks: `None`, `Bootstrap`, `Angular Material`
 * Authentication boilerplate: `Yes`, `No`
 * oAuth integrations: `Facebook` `Twitter` `Google`
@@ -178,10 +178,15 @@ The following packages are always installed by the [app](#app) generator:
 These packages are installed optionally depending on your configuration:
 
 * angular-material
-* bootstrap'
+* bootstrap
 * angular-ui-bootstrap
 * publish-counts
 * pagination
+* fourseven:scss
+* flemay:less-autoprefixer
+* mquandalle:stylus
+* coffeescript
+* civilframe:angular-jade
 
 ## Configuration
 Yeoman generated projects can be further tweaked according to your needs by modifying project files appropriately.

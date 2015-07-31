@@ -78,6 +78,8 @@ module.exports = yeoman.generators.Base.extend(
         choices: [
           'CSS'
           'Stylus'
+          'Less'
+          'SCSS'
         ]
         filter: (val) ->
           val.toLowerCase()
@@ -227,6 +229,10 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'coffeescript'
     if @filters.stylus
       meteorToAdd.push 'mquandalle:stylus'
+    if @filters.less
+      meteorToAdd.push 'flemay:less-autoprefixer'
+    if @filters.scss
+      meteorToAdd.push 'fourseven:scss'
     if @filters.jade
       meteorToAdd.push 'civilframe:angular-jade'
     if @filters.framework is 'material'
