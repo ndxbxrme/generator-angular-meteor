@@ -8,6 +8,7 @@
 * `git checkout -b YOUR-BRANCH-NAME`
 * `npm install`
 * `npm install -g grunt grunt-cli`
+* `npm link`
 * `grunt`
 
 ### building and testing
