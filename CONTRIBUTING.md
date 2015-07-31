@@ -36,6 +36,6 @@
 support for  
 * SCSS
 * LESS
-* Typescript
+* Typescript  
 and
 * a better material design solution/template
