@@ -34,9 +34,7 @@
 ```
   
 ### things to make and do
-support for  
-* SCSS
-* LESS
+add support for  
 * Typescript  
 
 and
