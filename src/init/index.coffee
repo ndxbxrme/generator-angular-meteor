@@ -15,18 +15,9 @@ angularModules = [
 ]
 module.exports = yeoman.generators.Base.extend(
   init: ->
-    @argument 'name',
-      type: String
-      required: true
-    @argument 'dontrun',
-      type: String
-      required: false
-    @appname = @name or path.basename(process.cwd())
-    @appname = _.camelize(_.slugify(_.humanize(@appname)))
-    #console.log(this.spawnCommand);
     return
   info: ->
-    #this.log(this.yeoman);
+    @log @yeoman
     return
   checkForConfig: ->
     cb = @async()

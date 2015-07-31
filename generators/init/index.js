@@ -20,19 +20,10 @@
   angularModules = ['angular-meteor', 'ui.router'];
 
   module.exports = yeoman.generators.Base.extend({
-    init: function() {
-      this.argument('name', {
-        type: String,
-        required: true
-      });
-      this.argument('dontrun', {
-        type: String,
-        required: false
-      });
-      this.appname = this.name || path.basename(process.cwd());
-      this.appname = _.camelize(_.slugify(_.humanize(this.appname)));
+    init: function() {},
+    info: function() {
+      this.log(this.yeoman);
     },
-    info: function() {},
     checkForConfig: function() {
       var cb;
       cb = this.async();
