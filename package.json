@@ -27,7 +27,7 @@
     "url": "git://github.com/ndxbxrme/generator-angular-meteor.git"
   },
   "scripts": {
-    "test": "grunt test"
+    "test": "grunt script-test"
   },
   "licenses": [
     {

@@ -58,6 +58,10 @@ module.exports = (grunt) ->
     'clean:test'
     'mochaTest'
   ]
+  grunt.registerTask 'script-test', [
+    'coffeelint'
+    'jshint'
+  ]
   grunt.registerTask 'build', [
     'coffee'
     'test'
