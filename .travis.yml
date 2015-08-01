@@ -4,4 +4,9 @@ node_js:
   - '0.11'
 before_script:
   - npm install -g grunt-cli
-  - curl https://install.meteor.com/ | sh
+before_install:
+  - - "curl -L https://raw.githubusercontent.com/arunoda/travis-ci-laika/master/configure.sh | /bin/sh"
+services:
+  - mongodb
+env:
+  - LAIKA_OPTIONS="-t 5000"
