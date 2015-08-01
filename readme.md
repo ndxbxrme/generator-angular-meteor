@@ -1,6 +1,4 @@
-# Meteor + AngularJS generator
-
-[![Build Status](https://travis-ci.org/ndxbxrme/generator-angular-meteor.svg)](https://travis-ci.org/ndxbxrme/generator-angular-meteor)
+# Meteor + AngularJS generator [![Build Status](https://travis-ci.org/ndxbxrme/generator-angular-meteor.svg)](https://travis-ci.org/ndxbxrme/generator-angular-meteor)
 
 > Yeoman generator for creating Meteor + AngularJS applications - hit the ground running.  
 > Based on [angular meteor tutorial](http://angular-meteor.com/tutorial), which is well worth spending a few of hours on
