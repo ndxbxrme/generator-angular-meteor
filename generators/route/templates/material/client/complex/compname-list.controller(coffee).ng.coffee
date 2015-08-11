@@ -7,7 +7,7 @@ angular.module '<%= appname %>'
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
-<% } %>  $scope.<%= compname %> = $meteor.collection<% if(pagination){ %> () ->
+<% } %>  $scope.<%= compname %> = $scope.$meteorCollection<% if(pagination){ %> () ->
     <%= compnameCapped %>.find {}, {sort:$scope.getReactively('sort')}<% } else { %> <%= compnameCapped %><% } %>
   $meteor.autorun $scope, () ->
     $meteor.subscribe('<%= compname %>'<% if(pagination){ %>, {
@@ -15,7 +15,7 @@ angular.module '<%= appname %>'
       skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'))
       sort: $scope.getReactively('sort')
     }, $scope.getReactively('search')<% } %>)<% if(pagination){ %>.then () ->
-      $scope.<%= compname %>Count = $meteor.object Counts, 'numberOf<%= compnameCapped %>', false<% } %>
+      $scope.<%= compname %>Count = $scope.$meteorObject Counts, 'numberOf<%= compnameCapped %>', false<% } %>
     
   $scope.save = () ->
     if $scope.form.$valid

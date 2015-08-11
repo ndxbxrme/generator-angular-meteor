@@ -2,7 +2,7 @@
 
 angular.module('<%= appname %>')
 .controller('<%= compnameCappedSingular%>DetailCtrl', function($scope, $stateParams, $meteor) {
-  $scope.<%= compnameSingular %> = $meteor.object(<%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id);
+  $scope.<%= compnameSingular %> = $scope.$meteorObject(<%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id);
   $meteor.subscribe('<%=compname%>');
   
   $scope.save = function() {
