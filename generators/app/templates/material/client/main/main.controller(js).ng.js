@@ -11,7 +11,7 @@ angular.module('<%= appname %>')
     return Things.find({}, {sort:$scope.getReactively('sort')});
   });<% } else { %>(Things);<% } %>
   $meteor.autorun($scope, function() {
-    $meteor.subscribe('things'<% if(pagination){ %>, {
+    $scope.$meteorSubscribe('things'<% if(pagination){ %>, {
       limit: parseInt($scope.getReactively('perPage')),
       skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage')),
       sort: $scope.getReactively('sort')
