@@ -19,6 +19,8 @@ angular.module('<%= appname %>')
       $scope.<%= compname %>Count = $scope.$meteorObject(Counts, 'numberOf<%= compnameCapped %>', false);
     })<% } %>;
   });
+
+  $meteor.session('<%= compname %>Counter').bind($scope, 'page');
     
   $scope.save = function() {
     if($scope.form.$valid) {

@@ -19,6 +19,8 @@ angular.module('<%= appname %>')
       $scope.thingsCount = $scope.$meteorObject(Counts, 'numberOfThings', false);
     })<% } %>;
   });
+
+  $meteor.session('thingsCounter').bind($scope, 'page');
     
   $scope.save = function() {
     if($scope.form.$valid) {

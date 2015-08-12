@@ -22,7 +22,7 @@
     </div>
 <% } %>
 <% if(pagination) { %>    <ul>
-      <li dir-paginate="<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage" total-items="<%= compname %>Count.count">
+      <li dir-paginate="<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage" total-items="<%= compname %>Count.count" current-page='page'>
         <p><a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a> <button ng-click="remove(<%= compnameSingular %>)">&times;</button></p>
       </li>
     </ul>

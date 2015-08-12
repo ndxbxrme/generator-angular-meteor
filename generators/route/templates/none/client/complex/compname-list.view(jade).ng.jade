@@ -16,7 +16,7 @@
             li(ng-click="orderProperty='1'") Ascending
             li(ng-click="orderProperty='-1'") Descending
       ul.nav.nav-tabs.nav-stacked.col-md-9.col-sm-12
-        li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count')
+        li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count',  current-page='page')
           p
             a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
             button.btn(ng-click='remove(<%= compnameSingular %>)') &times;

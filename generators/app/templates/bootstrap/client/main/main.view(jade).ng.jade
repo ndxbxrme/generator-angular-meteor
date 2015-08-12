@@ -16,7 +16,7 @@
             li(ng-click="orderProperty='1'") Ascending
             li(ng-click="orderProperty='-1'") Descending
       ul.nav.nav-tabs.nav-stacked.col-md-9.col-sm-12
-        li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count')
+        li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count',  current-page='page')
           p {{ thing.name }}
             button.btn(ng-click='remove(thing)') &times;
       dir-pagination-controls.col-md-12(on-page-change='pageChanged(newPageNumber)')<% } else { %>

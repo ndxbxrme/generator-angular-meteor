@@ -19,7 +19,7 @@
     </select>
   </div>
   <ul>
-    <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount.count">
+    <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount.count" current-page='page'>
       <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
     </li>
   </ul>

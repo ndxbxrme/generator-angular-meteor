@@ -14,7 +14,7 @@
       option(value='1') Ascending
       option(value='-1') Descending
   ul
-    li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count')
+    li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count',  current-page='page')
       p {{ thing.name }}
         button(ng-click='remove(thing)') &times;
   dir-pagination-controls(on-page-change='pageChanged(newPageNumber)')

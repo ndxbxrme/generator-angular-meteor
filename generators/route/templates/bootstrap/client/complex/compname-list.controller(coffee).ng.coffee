@@ -16,6 +16,9 @@ angular.module '<%= appname %>'
       sort: $scope.getReactively('sort')
     }, $scope.getReactively('search')<% } %>)<% if(pagination){ %>.then () ->
       $scope.<%= compname %>Count = $scope.$meteorObject Counts, 'numberOf<%= compnameCapped %>', false<% } %>
+
+  $meteor.session '<%= compname %>Counter'
+  .bind $scope, 'page'
     
   $scope.save = () ->
     if $scope.form.$valid
