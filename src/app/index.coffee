@@ -5,10 +5,13 @@ _ = require('underscore.string')
 _i = require('underscore.inflection')
 genUtils = require('../util.js')
 meteorToAdd = [
+  'add'
   'urigo:angular'
   'angularui:angular-ui-router'
 ]
-meteorToRemove = []
+meteorToRemove = [
+  'remove'
+]
 angularModules = [
   'angular-meteor'
   'ui.router'
@@ -208,23 +211,11 @@ module.exports = yeoman.generators.Base.extend(
       meteorToRemove.push 'insecure'
     if @filters.pagination
       meteorToRemove.push 'autopublish'
-    index = 0
-
-    removePackage = ->
-      if index < meteorToRemove.length
-        genUtils.spawnSync 'meteor', [
-          'remove'
-          meteorToRemove[index++]
-        ], removePackage
-      else
-        cb()
-      return
-
-    removePackage()
+    if meteorToRemove.length > 1
+      genUtils.spawnSync 'meteor', meteorToRemove, cb
     return
   loadMeteorPackages: ->
     cb = @async()
-    index = 0
     if @filters.coffee
       meteorToAdd.push 'coffeescript'
     if @filters.stylus
@@ -261,18 +252,7 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'accounts-facebook'
     if @filters.googleAuth
       meteorToAdd.push 'accounts-google'
-
-    loadPackage = ->
-      if index < meteorToAdd.length
-        genUtils.spawnSync 'meteor', [
-          'add'
-          meteorToAdd[index++]
-        ], loadPackage
-      else
-        cb()
-      return
-
-    loadPackage()
+    genUtils.spawnSync 'meteor', meteorToAdd, cb
     return
   write: ->
     @filters.appname = @appname + 'App'
