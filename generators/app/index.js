@@ -13,9 +13,9 @@
 
   genUtils = require('../util.js');
 
-  meteorToAdd = ['urigo:angular', 'angularui:angular-ui-router'];
+  meteorToAdd = ['add', 'urigo:angular', 'angularui:angular-ui-router'];
 
-  meteorToRemove = [];
+  meteorToRemove = ['remove'];
 
   angularModules = ['angular-meteor', 'ui.router'];
 
@@ -191,7 +191,7 @@
       cb();
     },
     removeMeteorPackages: function() {
-      var cb, index, removePackage;
+      var cb;
       cb = this.async();
       if (this.filters.auth) {
         meteorToRemove.push('insecure');
@@ -199,20 +199,13 @@
       if (this.filters.pagination) {
         meteorToRemove.push('autopublish');
       }
-      index = 0;
-      removePackage = function() {
-        if (index < meteorToRemove.length) {
-          genUtils.spawnSync('meteor', ['remove', meteorToRemove[index++]], removePackage);
-        } else {
-          cb();
-        }
-      };
-      removePackage();
+      if (meteorToRemove.length > 1) {
+        genUtils.spawnSync('meteor', meteorToRemove, cb);
+      }
     },
     loadMeteorPackages: function() {
-      var cb, index, loadPackage;
+      var cb;
       cb = this.async();
-      index = 0;
       if (this.filters.coffee) {
         meteorToAdd.push('coffeescript');
       }
@@ -264,14 +257,7 @@
       if (this.filters.googleAuth) {
         meteorToAdd.push('accounts-google');
       }
-      loadPackage = function() {
-        if (index < meteorToAdd.length) {
-          genUtils.spawnSync('meteor', ['add', meteorToAdd[index++]], loadPackage);
-        } else {
-          cb();
-        }
-      };
-      loadPackage();
+      genUtils.spawnSync('meteor', meteorToAdd, cb);
     },
     write: function() {
       this.filters.appname = this.appname + 'App';
