@@ -1,15 +1,9 @@
 'use strict'
 <% if(pagination){ %>
 Meteor.publish 'things', (options, searchString) ->
-  if !searchString
-    searchString = ''
-  Counts.publish this, 'numberOfThings', Things.find(
+  where =
     'name':
-      '$regex': '.*' + searchString or '' + '.*'
+      '$regex': '.*' + (searchString or '') + '.*'
       '$options': 'i'
-  ), noReady: true
-  Things.find {
-    'name':
-      '$regex': '.*' + searchString or '' + '.*'
-      '$options': 'i'
-  }, options<% } %>
+  Counts.publish this, 'numberOfThings', Things.find(where), noReady: true
+  Things.find where, options<% } %>

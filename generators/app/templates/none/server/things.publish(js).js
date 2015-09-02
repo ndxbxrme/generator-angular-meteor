@@ -1,20 +1,13 @@
 'use strict'
 <% if(pagination){ %>
 Meteor.publish('things', function(options, searchString) {
-  if(!searchString) {
-    searchString = '';
-  }
-  Counts.publish(this, 'numberOfThings', Things.find({
+  var where = {
     'name': {
-      '$regex': '.*' + searchString || '' + '.*',
+      '$regex': '.*' + (searchString || '') + '.*',
       '$options': 'i'
     }
-  }), {noReady: true});
-  return Things.find({
-    'name': {
-      '$regex': '.*' + searchString || '' + '.*',
-      '$options': 'i'
-    }
-  }, options);
+  };
+  Counts.publish(this, 'numberOfThings', Things.find(where), {noReady: true});
+  return Things.find(where, options);
 });
 <% } %>
