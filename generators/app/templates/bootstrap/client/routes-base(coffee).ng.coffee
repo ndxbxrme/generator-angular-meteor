@@ -8,6 +8,7 @@ angular.module '<%= appname %>'
 
 <% if(auth) { %>.run ($rootScope, $state) ->
   $rootScope.$on '$stateChangeError', (event, toState, toParams, fromState, fromParams, error) ->
-    if error is 'AUTH_REQUIRED'
-      $state.go 'main'
+    switch error
+      when 'AUTH_REQUIRED', 'FORBIDDEN', 'UNAUTHORIZED'
+        $state.go 'main'
 <% } %>

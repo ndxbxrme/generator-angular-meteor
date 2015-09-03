@@ -7,8 +7,12 @@ angular.module('<%= appname %>')
   $urlRouterProvider.otherwise('/');
 })<% if(auth) { %>.run(['$rootScope', '$state', function($rootScope, $state) {
   $rootScope.$on('$stateChangeError', function(event, toState, toParams, fromState, fromParams, error) {
-    if (error === 'AUTH_REQUIRED') {
-      $state.go('/');
+    switch(error) {
+      case 'AUTH_REQUIRED':
+      case 'FORBIDDEN':
+      case 'UNAUTHORIZED':
+        $state.go('main');
+        break;
     }
   });
 }])<% } %>;
