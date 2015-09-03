@@ -2,8 +2,6 @@
 
 angular.module '<%= appname %>'
 .directive '<%= compname %>', ->
-  {
-    restrict: 'EA'
-    link: (scope, elem, attrs) ->
-      scope.property = '<%=compname%>'
-  }
+  restrict: 'EA'
+  link: (scope, elem, attrs) ->
+    scope.property = '<%=compname%>'
