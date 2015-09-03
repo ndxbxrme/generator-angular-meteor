@@ -213,6 +213,8 @@ module.exports = yeoman.generators.Base.extend(
       meteorToRemove.push 'autopublish'
     if meteorToRemove.length > 1
       genUtils.spawnSync 'meteor', meteorToRemove, cb
+    else
+      cb()
     return
   loadMeteorPackages: ->
     cb = @async()

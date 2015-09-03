@@ -201,6 +201,8 @@
       }
       if (meteorToRemove.length > 1) {
         genUtils.spawnSync('meteor', meteorToRemove, cb);
+      } else {
+        cb();
       }
     },
     loadMeteorPackages: function() {
