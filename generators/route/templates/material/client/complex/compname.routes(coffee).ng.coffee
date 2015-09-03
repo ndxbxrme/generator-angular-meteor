@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.config ['$stateProvider', ($stateProvider) ->
+.config ($stateProvider) ->
   $stateProvider
   .state '<%= compname %>-list',
     url: '/<%= compnameSlugged %>'
@@ -19,4 +19,3 @@ angular.module '<%= appname %>'
       currentUser: ['$meteor', ($meteor) ->
         $meteor.requireUser()
       ]<% } %>
-]

@@ -209,7 +209,7 @@
       var cb;
       cb = this.async();
       if (this.filters.coffee) {
-        meteorToAdd.push('coffeescript');
+        meteorToAdd.push('ndxbxrme:ng-coffeescript');
       }
       if (this.filters.stylus) {
         meteorToAdd.push('mquandalle:stylus');

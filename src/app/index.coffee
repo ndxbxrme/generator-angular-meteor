@@ -219,7 +219,7 @@ module.exports = yeoman.generators.Base.extend(
   loadMeteorPackages: ->
     cb = @async()
     if @filters.coffee
-      meteorToAdd.push 'coffeescript'
+      meteorToAdd.push 'ndxbxrme:ng-coffeescript'
     if @filters.stylus
       meteorToAdd.push 'mquandalle:stylus'
     if @filters.less
