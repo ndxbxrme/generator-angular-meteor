@@ -6,7 +6,8 @@ _i = require('underscore.inflection')
 genUtils = require('../util.js')
 meteorToAdd = [
   'add'
-  'urigo:angular'
+  'angular'
+  'ejson'
   'angularui:angular-ui-router'
 ]
 meteorToRemove = [
