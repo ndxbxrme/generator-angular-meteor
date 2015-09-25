@@ -243,7 +243,9 @@ module.exports = yeoman.generators.Base.extend(
     if @filters.framework is 'foundationapps'
       meteorToAdd.push 'rainhaven:foundation-apps'
     if @filters.framework is 'ionic'
+      meteorToAdd.splice meteorToAdd.indexOf('angularui:angular-ui-router'), 1
       meteorToAdd.push 'driftyco:ionic'
+      angularModules.splice angularModules.indexOf('ui-router'), 1
       angularModules.push 'ionic'
     if @filters.bower
       meteorToAdd.push 'mquandalle:bower'

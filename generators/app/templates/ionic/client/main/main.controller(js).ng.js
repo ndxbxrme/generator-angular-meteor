@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('<%= appname %>')
-.controller('MainCtrl', function($scope, $meteor) {
+.controller('MainCtrl', function($scope, $meteor, $ionicScrollDelegate) {
 <% if(pagination){ %>  $scope.page = 1;
   $scope.perPage = 3;
   $scope.sort = {name_sort : 1};
@@ -26,11 +26,13 @@ angular.module('<%= appname %>')
     if($scope.form.$valid) {
       $scope.things.save($scope.newThing);
       $scope.newThing = undefined;
+      $ionicScrollDelegate.resize();
     }
   };
       
   $scope.remove = function(thing) {
     $scope.things.remove(thing);
+    $ionicScrollDelegate.resize();
   };<% if(pagination){ %>
     
   $scope.pageChanged = function(newPage) {

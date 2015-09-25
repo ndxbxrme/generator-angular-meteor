@@ -240,7 +240,9 @@
         meteorToAdd.push('rainhaven:foundation-apps');
       }
       if (this.filters.framework === 'ionic') {
+        meteorToAdd.splice(meteorToAdd.indexOf('angularui:angular-ui-router'), 1);
         meteorToAdd.push('driftyco:ionic');
+        angularModules.splice(angularModules.indexOf('ui-router'), 1);
         angularModules.push('ionic');
       }
       if (this.filters.bower) {

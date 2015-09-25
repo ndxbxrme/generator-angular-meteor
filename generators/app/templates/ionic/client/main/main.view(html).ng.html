@@ -1,20 +1,29 @@
-<ion-content class="things">
-  <h1>Things</h1>
-  <form ng-submit="save()" name="form" novalidate="" class="thing-form">
+<toolbar></toolbar>
+<ion-pane>
+  <ion-content class="has-header has-footer padding things">
+    <h1>Things</h1>
+    <!-- 
+      Due to ion-content creating a child scope, we have to use $parent to
+      access our own scope. This only applies for variables inside an
+      ion-content directive. Outside ion-content you can call 'things' directly
+    -->
+    <form ng-submit="$parent.save()" name="$parent.form" novalidate="">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="$parent.newThing.name"/>
+        </label>
+      </div>
+      <button type="submit" class="button button-block button-positive">Add</button>
+    </form>
     <div class="list">
-      <label class="item item-input">
-        <input type="text" placeholder="Name" ng-model="newThing.name"/>
-      </label>
+      <div ng-repeat="thing in $parent.things" class="item item-button-right">
+        <p>{{ thing.name }}</p>
+        <button ng-click="$parent.remove(thing)" class="button button-assertive">
+          <i class="icon ion-trash-a"></i>
+        </button>
+      </div>
     </div>
-    <input type="submit" value="Add" class="button button-block button-positive"/>
-  </form>
-  <div class="list">
-    <div ng-repeat="thing in things" class="item item-button-right">
-      <p>{{ thing.name }}</p>
-      <button ng-click="remove(thing)" class="button button-assertive">
-        <i class="icon ion-trash-a"></i>
-      </button>
-    </div>
-  </div>
-  <p>Total number of things: {{ things.length }}</p>
-</ion-content>
+    <p>Total number of things: {{ $parent.things.length }}</p>
+  </ion-content>
+</ion-pane>
+<nav></nav>

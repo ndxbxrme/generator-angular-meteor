@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller 'MainCtrl', ($scope, $meteor) ->
+.controller 'MainCtrl', ($scope, $meteor, $ionicScrollDelegate) ->
 <% if(pagination){ %>  $scope.page = 1
   $scope.perPage = 3
   $scope.sort = name_sort : 1
@@ -24,9 +24,11 @@ angular.module '<%= appname %>'
     if $scope.form.$valid
       $scope.things.save $scope.newThing
       $scope.newThing = undefined
+      $ionicScrollDelegate.resize
       
   $scope.remove = (thing) ->
-    $scope.things.remove thing<% if(pagination){ %>
+    $scope.things.remove thing
+    $ionicScrollDelegate.resize<% if(pagination){ %>
     
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage

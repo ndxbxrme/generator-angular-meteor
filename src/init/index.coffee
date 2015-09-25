@@ -95,6 +95,7 @@ module.exports = yeoman.generators.Base.extend(
           'None'
           'Bootstrap'
           'Angular Material'
+          'Ionic'
         ]
         filter: (val) ->
           filterMap = 
@@ -103,6 +104,7 @@ module.exports = yeoman.generators.Base.extend(
             'Bootstrap': 'bootstrap'
             'PureCSS': 'purecss'
             'Foundation for Apps': 'foundationapps'
+            'Ionic': 'ionic'
           filterMap[val]
       }
       {
@@ -214,6 +216,11 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'mrt:purecss'
     if @filters.framework is 'foundationapps'
       meteorToAdd.push 'rainhaven:foundation-apps'
+    if @filters.framework is 'ionic'
+      meteorToAdd.splice meteorToAdd.indexOf('angularui:angular-ui-router'), 1
+      meteorToAdd.push 'driftyco:ionic'
+      angularModules.splice angularModules.indexOf('ui-router'), 1
+      angularModules.push 'ionic'
     if @filters.bower
       meteorToAdd.push 'mquandalle:bower'
     if @filters.pagination
