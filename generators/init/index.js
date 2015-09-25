@@ -13,7 +13,7 @@
 
   genUtils = require('../util.js');
 
-  meteorToAdd = ['urigo:angular', 'angularui:angular-ui-router'];
+  meteorToAdd = ['angular', 'angularui:angular-ui-router'];
 
   meteorToRemove = [];
 
