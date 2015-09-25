@@ -11,7 +11,9 @@
   <div class="list">
     <div ng-repeat="thing in things" class="item item-button-right">
       <p>{{ thing.name }}</p>
-      <button ng-click="remove(thing)" class="button button-assertive"><i class="icon ion-trash-a"></i></button>
+      <button ng-click="remove(thing)" class="button button-assertive">
+        <i class="icon ion-trash-a"></i>
+      </button>
     </div>
   </div>
   <p>Total number of things: {{ things.length }}</p>
