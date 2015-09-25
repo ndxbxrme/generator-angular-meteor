@@ -1,0 +1,14 @@
+ion-content.things
+  h1 Things
+  form.thing-form(ng-submit='save()', name='form', novalidate='')
+    .list
+      label.item.item-input
+        input(type='text', placeholder='Name', ng-model='newThing.name')
+    input.button.button-block.button-positive(type='submit', value='Add')
+  .list
+    .item.item-button-right(ng-repeat='thing in things')
+      p {{ thing.name }}
+      button.button.button-assertive(ng-click='remove(thing)')
+        i.icon.ion-trash-a
+  p Total number of things: {{ things.length }}
+  

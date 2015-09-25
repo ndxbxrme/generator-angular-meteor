@@ -1,0 +1,18 @@
+<ion-content class="things">
+  <h1>Things</h1>
+  <form ng-submit="save()" name="form" novalidate="" class="thing-form">
+    <div class="list">
+      <label class="item item-input">
+        <input type="text" placeholder="Name" ng-model="newThing.name"/>
+      </label>
+    </div>
+    <input type="submit" value="Add" class="button button-block button-positive"/>
+  </form>
+  <div class="list">
+    <div ng-repeat="thing in things" class="item item-button-right">
+      <p>{{ thing.name }}</p>
+      <button ng-click="remove(thing)" class="button button-assertive"><i class="icon ion-trash-a"></i></button>
+    </div>
+  </div>
+  <p>Total number of things: {{ things.length }}</p>
+</ion-content>

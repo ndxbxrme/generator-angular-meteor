@@ -91,7 +91,7 @@
           name: 'framework',
           message: 'Select a CSS framework',
           "default": 1,
-          choices: ['None', 'Bootstrap', 'Angular Material'],
+          choices: ['None', 'Bootstrap', 'Angular Material', 'Ionic'],
           filter: function(val) {
             var filterMap;
             filterMap = {
@@ -99,7 +99,8 @@
               'Angular Material': 'material',
               'Bootstrap': 'bootstrap',
               'PureCSS': 'purecss',
-              'Foundation for Apps': 'foundationapps'
+              'Foundation for Apps': 'foundationapps',
+              'Ionic': 'ionic'
             };
             return filterMap[val];
           }
@@ -237,6 +238,10 @@
       }
       if (this.filters.framework === 'foundationapps') {
         meteorToAdd.push('rainhaven:foundation-apps');
+      }
+      if (this.filters.framework === 'ionic') {
+        meteorToAdd.push('driftyco:ionic');
+        angularModules.push('ionic');
       }
       if (this.filters.bower) {
         meteorToAdd.push('mquandalle:bower');
