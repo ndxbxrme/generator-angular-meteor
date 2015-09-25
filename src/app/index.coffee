@@ -7,6 +7,7 @@ genUtils = require('../util.js')
 meteorToAdd = [
   'add'
   'angular'
+  'ejson'
   'angularui:angular-ui-router'
 ]
 meteorToRemove = [
