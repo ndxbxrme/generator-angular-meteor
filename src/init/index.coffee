@@ -7,6 +7,7 @@ genUtils = require('../util.js')
 meteorToAdd = [
   'angular'
   'angularui:angular-ui-router'
+  'urigo:angular-blaze-template'
 ]
 meteorToRemove = []
 angularModules = [

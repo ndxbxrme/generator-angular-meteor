@@ -9,6 +9,7 @@ meteorToAdd = [
   'angular'
   'ejson'
   'angularui:angular-ui-router'
+  'urigo:angular-blaze-template'
 ]
 meteorToRemove = [
   'remove'
