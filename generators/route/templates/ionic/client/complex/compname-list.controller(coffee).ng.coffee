@@ -24,11 +24,11 @@ angular.module '<%= appname %>'
     if $scope.form.$valid
       $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
       $scope.new<%= compnameCappedSingular %> = undefined
-      $ionicScrollDelegate.resize
+      $ionicScrollDelegate.resize()
       
   $scope.remove = (<%= compnameSingular %>) ->
-    $scope.<%= compname %>.remove <%= compnameSingular %><% if(pagination){ %>
-    $ionicScrollDelegate.resize
+    $scope.<%= compname %>.remove <%= compnameSingular %>
+    $ionicScrollDelegate.resize()<% if(pagination){ %>
     
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage

@@ -1,9 +1,9 @@
 <div class="tabs-striped tabs-background-positive tabs-color-light">
   <div class="tabs">
-    <a href="/" class="tab-item active">
+    <a href="/" class="tab-item" ng-class="{active:getState()==='main'}">
       <i class="icon ion-home"></i>
     </a>
-    <a href="/about" class="tab-item">
+    <a href="/about" class="tab-item" ng-class="{active:getState()==='about'}">
       <i class="icon ion-information-circled"></i>
     </a>
   </div>

@@ -1,6 +1,6 @@
 .tabs-striped.tabs-background-positive.tabs-color-light
   .tabs
-    a.tab-item.active(href='/')
+    a.tab-item(href='/', ng-class="{active:getState()==='main'}")
       i.icon.ion-home
-    a.tab-item(href='/about')
+    a.tab-item(href='/about', ng-class="{active:getState()==='about'}")
       i.icon.ion-information-circled

@@ -1,6 +1,5 @@
-toolbar
 ion-pane
-  ion-content.has-header.has-footer.padding.things
+  ion-content.padding.things
     h1 Things
     //- Due to ion-content creating a child scope, we have to use $parent to
     //- access our own scope. This only applies for variables inside an
@@ -16,4 +15,3 @@ ion-pane
         button.button.button-assertive(ng-click='$parent.remove(thing)')
           i.icon.ion-trash-a
     p Total number of things: {{ $parent.things.length }}
-nav
