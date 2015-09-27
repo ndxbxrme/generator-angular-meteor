@@ -1,0 +1,27 @@
+<ion-pane>
+  <ion-content class="padding <%= compname %>-list">
+    <h1><%= compnameCapped %></h1>
+    <!--
+      Due to ion-content creating a child scope, we have to use $parent to
+      access our own scope. This only applies for variables inside an
+      ion-content directive. Outside ion-content you can call '<%= compname %>' directly
+    -->
+    <form ng-submit="$parent.save()" name="$parent.form" novalidate="">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="$parent.new<%= compnameCappedSingular %>.name" />
+        </label>
+      </div>
+      <button class="button button-block button-positive" type="submit">Add</button>
+    </form>
+    <div class="list">
+      <div class="item item-button-right" ng-repeat="<%= compnameSingular %> in $parent.<%= compname %>">
+        <a href="/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}">{{ <%= compnameSingular %>.name }}</a>
+        <button class="button button-assertive" ng-click="$parent.remove(<%= compnameSingular %>)">
+          <i class="icon ion-trash-a"></i>
+        </button>
+      </div>
+    </div>
+    <p>Total number of <%= compname %>: {{ $parent.<%= compname %>.length }}</p>
+  </ion-content>
+</ion-pane>

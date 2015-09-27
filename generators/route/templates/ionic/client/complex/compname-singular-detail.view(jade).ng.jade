@@ -1,0 +1,9 @@
+ion-pane
+  ion-content.padding.<%= compnameSingular %>-detail
+    h1 Here are the details of the <%= compnameSingular %>
+    form(ng-submit='$parent.save()', name='$parent.form', novalidate='')
+      .list
+        label.item.item-input
+          input(type='text', placeholder='Name', ng-model='$parent.<%= compnameSingular %>.name')
+      button.button.button-block.button-positive(type='submit') Save
+      button.button.button-block.button-positive(ng-click='reset()') Reset

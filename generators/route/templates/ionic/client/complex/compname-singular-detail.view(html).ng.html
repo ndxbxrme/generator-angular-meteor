@@ -1,0 +1,14 @@
+<ion-pane>
+  <ion-content class="padding <%= compnameSingular %>-detail">
+    <h1>Here are the details of the <%= compnameSingular %></h1>
+    <form ng-submit="$parent.save()" name="$parent.form" novalidate="">
+      <div class="list">
+        <label class="item item-input">
+          <input type="text" placeholder="Name" ng-model="$parent.<%= compnameSingular %>;.name"/>
+        </label>
+      </div>
+      <button type="submit" class="button button-block button-positive">Save</button>
+      <button ng-click="reset()" class="button button-block button-positive">Reset</button>
+    </form>
+  </ion-content>
+</ion-pane>
