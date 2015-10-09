@@ -48,7 +48,6 @@ Available generators:
     - [angular-meteor:directive](#directive)
     - [angular-meteor:factory](#service)
     - [angular-meteor:decorator](#decorator)
-    - [angular-meteor:view](#view)
 
 ### App
 Sets up a new AngularJS + Meteor app, generating all the boilerplate you need to get started.
