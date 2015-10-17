@@ -252,7 +252,7 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'mquandalle:bower'
     if @filters.pagination
       meteorToAdd.push 'tmeasday:publish-counts'
-      meteorToAdd.push 'angularutils:pagination'
+      meteorToAdd.push 'angularutils:pagination@=0.9.0'
       angularModules.push 'angularUtils.directives.dirPagination'
     if @filters.auth
       meteorToAdd.push 'accounts-password'

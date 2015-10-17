@@ -250,7 +250,7 @@
       }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');
-        meteorToAdd.push('angularutils:pagination');
+        meteorToAdd.push('angularutils:pagination@=0.9.0');
         angularModules.push('angularUtils.directives.dirPagination');
       }
       if (this.filters.auth) {
