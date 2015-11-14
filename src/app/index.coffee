@@ -211,6 +211,8 @@ module.exports = yeoman.generators.Base.extend(
     return
   removeMeteorPackages: ->
     cb = @async()
+    
+    meteorToRemove.push 'ecmascript', 'blaze-html-templates'
     if @filters.auth
       meteorToRemove.push 'insecure'
     if @filters.pagination
