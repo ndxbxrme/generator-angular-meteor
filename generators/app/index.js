@@ -13,9 +13,9 @@
 
   genUtils = require('../util.js');
 
-  meteorToAdd = ['add', 'angular', 'ejson', 'angularui:angular-ui-router', 'urigo:angular-blaze-template'];
+  meteorToAdd = ['add', 'angular-with-blaze', 'ejson', 'angularui:angular-ui-router', 'urigo:angular-blaze-template'];
 
-  meteorToRemove = ['remove'];
+  meteorToRemove = ['remove', 'ecmascript'];
 
   angularModules = ['angular-meteor', 'ui.router'];
 

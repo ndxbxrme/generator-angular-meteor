@@ -6,13 +6,14 @@ _i = require('underscore.inflection')
 genUtils = require('../util.js')
 meteorToAdd = [
   'add'
-  'angular'
+  'angular-with-blaze'
   'ejson'
   'angularui:angular-ui-router'
   'urigo:angular-blaze-template'
 ]
 meteorToRemove = [
   'remove'
+  'ecmascript'
 ]
 angularModules = [
   'angular-meteor'
