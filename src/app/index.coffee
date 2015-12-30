@@ -3,6 +3,7 @@ fs = require('fs')
 path = require('path')
 _ = require('underscore.string')
 _i = require('underscore.inflection')
+os = require('os')
 genUtils = require('../util.js')
 meteorToAdd = [
   'add'
@@ -43,6 +44,22 @@ module.exports = yeoman.generators.Base.extend(
       @log 'The generator has already been run.  CD into the directory'
       return
     cb()
+    return
+  windowsXCheck: ->
+    cb = @async()
+    if os.platform().indexOf('win') isnt -1 and os.release().indexOf('10') is 0
+      @prompt [
+        {
+          type: 'input'
+          name: 'hmmmm'
+          message: 'Hit Enter to get started'
+        }
+      ], (() ->
+        cb()
+        return
+      ).bind(this)
+    else
+      cb()
     return
   clientPrompts: ->
     cb = @async()

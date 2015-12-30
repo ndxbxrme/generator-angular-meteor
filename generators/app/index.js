@@ -1,5 +1,5 @@
 (function() {
-  var _, _i, angularModules, fs, genUtils, meteorToAdd, meteorToRemove, path, yeoman;
+  var _, _i, angularModules, fs, genUtils, meteorToAdd, meteorToRemove, os, path, yeoman;
 
   yeoman = require('yeoman-generator');
 
@@ -10,6 +10,8 @@
   _ = require('underscore.string');
 
   _i = require('underscore.inflection');
+
+  os = require('os');
 
   genUtils = require('../util.js');
 
@@ -45,6 +47,23 @@
         return;
       }
       cb();
+    },
+    windowsXCheck: function() {
+      var cb;
+      cb = this.async();
+      if (os.platform().indexOf('win') !== -1 && os.release().indexOf('10') === 0) {
+        this.prompt([
+          {
+            type: 'input',
+            name: 'hmmmm',
+            message: 'Hit Enter to get started'
+          }
+        ], (function() {
+          cb();
+        }).bind(this));
+      } else {
+        cb();
+      }
     },
     clientPrompts: function() {
       var cb;
