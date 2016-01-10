@@ -17,7 +17,7 @@
         md-option(value='-1') Descending
 <% } %>
     ul
-<% if(pagination) { %>      li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount.count',  current-page='page')
+<% if(pagination) { %>      li(dir-paginate='thing in things | itemsPerPage: perPage', total-items='thingsCount',  current-page='page')
         p {{ thing.name }}
           button(ng-click='remove(thing)') &times;
     dir-pagination-controls(on-page-change='pageChanged(newPageNumber)')
@@ -25,5 +25,5 @@
         p {{thing.name}}
           button(ng-click='remove(thing)') &times;
 <% } %>
-    p Total number of things: {{<% if(pagination) {%>thingsCount.count<% } else { %>things.length<% } %>}}
+    p Total number of things: {{<% if(pagination) {%>thingsCount<% } else { %>things.length<% } %>}}
   span(flex='')

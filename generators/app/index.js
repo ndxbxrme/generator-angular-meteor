@@ -15,9 +15,9 @@
 
   genUtils = require('../util.js');
 
-  meteorToAdd = ['add', 'angular-with-blaze', 'ejson', 'angularui:angular-ui-router', 'urigo:angular-blaze-template'];
+  meteorToAdd = ['add', 'angular', 'angularui:angular-ui-router'];
 
-  meteorToRemove = ['remove', 'ecmascript'];
+  meteorToRemove = ['remove', 'blaze-html-templates', 'ecmascript'];
 
   angularModules = ['angular-meteor', 'ui.router'];
 
@@ -269,12 +269,13 @@
       }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');
-        meteorToAdd.push('angularutils:pagination@=0.9.0');
+        meteorToAdd.push('angularutils:pagination');
         angularModules.push('angularUtils.directives.dirPagination');
       }
       if (this.filters.auth) {
         meteorToAdd.push('accounts-password');
-        meteorToAdd.push('accounts-ui');
+        meteorToAdd.push('dotansimha:accounts-ui-angular');
+        angularModules.push('accounts.ui');
       }
       if (this.filters.twitterAuth) {
         meteorToAdd.push('accounts-twitter');

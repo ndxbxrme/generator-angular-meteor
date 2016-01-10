@@ -17,7 +17,7 @@
         md-option(value='-1') Descending
 <% } %>
     ul
-<% if(pagination) { %>      li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count.count',  current-page='page')
+<% if(pagination) { %>      li(dir-paginate='<%= compnameSingular %> in <%= compname %> | itemsPerPage: perPage', total-items='<%= compname %>Count',  current-page='page')
         p 
           a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{ <%= compnameSingular %>.name }}
           button(ng-click='remove(<%= compnameSingular %>)') &times;
@@ -27,5 +27,5 @@
           a(href='/<%=compnameSlugged%>/{{<%= compnameSingular %>._id}}') {{<%= compnameSingular %>.name}}
           button(ng-click='remove(<%= compnameSingular %>)') &times;
 <% } %>
-    p Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count.count<% } else { %><%= compname %>.length<% } %>}}
+    p Total number of <%= compname %>: {{<% if(pagination) {%><%= compname %>Count<% } else { %><%= compname %>.length<% } %>}}
   span(flex='')

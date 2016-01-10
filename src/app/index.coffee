@@ -7,13 +7,12 @@ os = require('os')
 genUtils = require('../util.js')
 meteorToAdd = [
   'add'
-  'angular-with-blaze'
-  'ejson'
+  'angular'
   'angularui:angular-ui-router'
-  'urigo:angular-blaze-template'
 ]
 meteorToRemove = [
   'remove'
+  'blaze-html-templates'
   'ecmascript'
 ]
 angularModules = [
@@ -270,11 +269,12 @@ module.exports = yeoman.generators.Base.extend(
       meteorToAdd.push 'mquandalle:bower'
     if @filters.pagination
       meteorToAdd.push 'tmeasday:publish-counts'
-      meteorToAdd.push 'angularutils:pagination@=0.9.0'
+      meteorToAdd.push 'angularutils:pagination'
       angularModules.push 'angularUtils.directives.dirPagination'
     if @filters.auth
       meteorToAdd.push 'accounts-password'
-      meteorToAdd.push 'accounts-ui'
+      meteorToAdd.push 'dotansimha:accounts-ui-angular'
+      angularModules.push 'accounts.ui'
     if @filters.twitterAuth
       meteorToAdd.push 'accounts-twitter'
     if @filters.facebookAuth

@@ -19,7 +19,7 @@
         </div>
       </div>
       <ul class="nav nav-tabs nav-stacked col-md-9 col-sm-12">
-        <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount.count" current-page='page'>
+        <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount" current-page='page'>
           <p>{{ thing.name }}
             <button ng-click="remove(thing)" class="btn">&times;</button>
           </p>
@@ -35,5 +35,5 @@
       </ul><% } %>
     </div>
   </div>
-  <p>Total number of things: {{thingsCount.count}}</p>
+  <p>Total number of things: {{thingsCount}}</p>
 </div>

@@ -1,20 +1,30 @@
 'use strict'
 
 angular.module('<%= appname %>')
-.controller('<%= compnameCappedSingular%>DetailCtrl', function($scope, $stateParams, $meteor) {
-  $scope.<%= compnameSingular %> = $scope.$meteorObject(<%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id);
-  $scope.$meteorSubscribe('<%=compname%>');
+.controller('<%= compnameCappedSingular%>DetailCtrl', function($scope, $stateParams) {
+  
+  $scope.helpers({
+    <%= compnameSingular %>: function() {
+      return <%= compnameCapped %>.findOne({ _id: $stateParams.<%= compnameSingular %>Id }); 
+    }
+  });
+  
+  $scope.subscribe('<%= compname %>');
   
   $scope.save = function() {
     if($scope.form.$valid) {
-      $scope.<%= compnameSingular %>.save().then(
-        function(numberOfDocs) {
-          console.log('save successful, docs affected ', numberOfDocs);
-        },
-        function(error) {
-          console.log('save error ', error);
+      delete $scope.<%= compnameSingular %>._id;
+      <%= compnameCapped %>.update({
+        _id: $stateParams.<%= compnameSingular %>Id
+      }, {
+        $set: $scope.<%= compnameSingular %>
+      }, function(error) {
+        if(error) {
+          console.log('Unable to update the <%= compnameSingular %>'); 
+        } else {
+          console.log('Done!');
         }
-      )
+      });
     }
   };
         

@@ -1,6 +1,6 @@
 .toolbar
   span.navbar-left<% if(auth) { %>
-    blaze-template(name='loginButtons')<% } %>
+    login-buttons<% } %>
     a(ng-href='/about') About
   span.navbar-right 
     a(href='/') <%= appname %>

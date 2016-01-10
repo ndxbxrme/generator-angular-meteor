@@ -1,6 +1,6 @@
 md-toolbar.toolbar(layout='row', layout-align='start center', layout-padding='')
   .navbar-left(layout='row', layout-align='center center')<% if(auth) { %>
-    blaze-template(name='loginButtons')<% } %>
+    login-buttons<% } %>
     md-button(ng-href='/about') About
   span(flex='')
   .navbar-right 

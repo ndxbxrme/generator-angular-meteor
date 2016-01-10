@@ -1,18 +1,27 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller '<%= compnameCappedSingular%>DetailCtrl', ($scope, $stateParams, $meteor) ->
-  $scope.<%= compnameSingular %> = $scope.$meteorObject <%= compnameCapped %>, $stateParams.<%= compnameSingular %>Id
-  $scope.$meteorSubscribe('<%=compname%>')
+.controller '<%= compnameCappedSingular%>DetailCtrl', ($scope, $stateParams) ->
+
+  $scope.helpers
+    <%= compnameSingular %>: () ->
+      <%= compnameCapped %>.findOne
+        _id: $stateParams.<%= compnameSingular %>Id
+        
+  $scope.subscribe '<%= compname %>'
   
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.<%= compnameSingular %>.save().then(
-        (numberOfDocs) ->
-          console.log 'save successful, docs affected ', numberOfDocs
-        (error) ->
-          console.log 'save error ', error
-      )
+      delete $scope.<%= compnameSingular %>._id
+      <%= compnameCapped %>.update
+        _id: $stateParams.<%= compnameSingular %>Id
+      ,
+        $set: $scope.<%= compnameSingular %>
+      , (error) ->
+        if error
+          console.log 'Unable to update the <%= compnameSingular %>'
+        else
+          console.log 'Done!'
         
   $scope.reset = () ->
     $scope.<%= compnameSingular %>.reset()

@@ -1,24 +1,55 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller '<%= compnameCapped%>ListCtrl', ($scope, $meteor, $ionicScrollDelegate) ->
+.controller '<%= compnameCapped%>ListCtrl', ($scope, $ionicScrollDelegate) ->
 <% if(pagination){ %>  $scope.page = 1
   $scope.perPage = 3
   $scope.sort = name_sort : 1
   $scope.orderProperty = '1'
   
-<% } %>  $scope.<%= compname %> = $scope.$meteorCollection<% if(pagination){ %> () ->
-    <%= compnameCapped %>.find {}, {sort:$scope.getReactively('sort')}<% } else { %> <%= compnameCapped %><% } %>
-  $meteor.autorun $scope, () ->
-    $scope.$meteorSubscribe('<%= compname %>'<% if(pagination){ %>, {
-      limit: parseInt($scope.getReactively('perPage'))
-      skip: parseInt(($scope.getReactively('page') - 1) * $scope.getReactively('perPage'))
-      sort: $scope.getReactively('sort')
-    }, $scope.getReactively('search')<% } %>)<% if(pagination){ %>.then () ->
-      $scope.<%= compname %>Count = $scope.$meteorObject Counts, 'numberOf<%= compnameCapped %>', false<% } %>
+  $scope.helpers
+    <%= compname %>: () ->
+      <%= compnameCapped %>.find {},
+        sort: $scope.getReactively 'sort'
+    <%= compname %>Count: () ->
+      Counts.get 'numberOf<%= compnameCapped %>'
+      
+  $scope.subscribe '<%= compname %>', () ->
+    [
+      {
+        sort: $scope.getReactively 'sort'
+        limit: parseInt $scope.getReactively 'perPage'
+        skip: ((parseInt $scope.getReactively 'page') - 1) * (parseInt $scope.getReactively 'perPage')
+      }
+      $scope.getReactively 'search'
+    ]      
 
-  $meteor.session '<%= compname %>Counter'
-  .bind $scope, 'page'
+  $scope.save = () ->
+    if $scope.form.$valid
+      $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
+      $scope.new<%= compnameCappedSingular %> = undefined
+      $ionicScrollDelegate.resize()
+      
+  $scope.remove = (<%= compnameSingular %>) ->
+    $scope.<%= compname %>.remove <%= compnameSingular %>
+    $ionicScrollDelegate.resize()
+    
+  $scope.pageChanged = (newPage) ->
+    $scope.page = newPage
+    
+  $scope.$watch 'orderProperty', () ->
+    if $scope.orderProperty
+      $scope.sort = name_sort: parseInt($scope.orderProperty)<% } else { %>
+      
+  $scope.helpers
+    <%= compname %>: () ->
+      <%= compnameCapped %>.find {}
+      
+  $scope.subscribe '<%= compname %>', () ->
+    [
+      {}
+      $scope.getReactively 'search'
+    ]     
     
   $scope.save = () ->
     if $scope.form.$valid
@@ -28,11 +59,5 @@ angular.module '<%= appname %>'
       
   $scope.remove = (<%= compnameSingular %>) ->
     $scope.<%= compname %>.remove <%= compnameSingular %>
-    $ionicScrollDelegate.resize()<% if(pagination){ %>
-    
-  $scope.pageChanged = (newPage) ->
-    $scope.page = newPage
-    
-  $scope.$watch 'orderProperty', () ->
-    if $scope.orderProperty
-      $scope.sort = name_sort: parseInt($scope.orderProperty)<% } %>
+    $ionicScrollDelegate.resize()
+<% } %>
