@@ -28,13 +28,13 @@ angular.module('<%= appname %>')
 
   $scope.save = function() {
     if ($scope.form.$valid) {
-      $scope.things.save($scope.newThing);
-      $scope.newThing = undefined;
+      Things.insert($scope.newThing);
+      $scope.newThing = void 0;
     }
   };
                   
   $scope.remove = function(thing) {
-    $scope.things.remove(thing);
+    Things.remove({_id: thing._id});
   };
                   
   $scope.pageChanged = function(newPage) {
@@ -61,12 +61,12 @@ angular.module('<%= appname %>')
 
   $scope.save = function() {
     if ($scope.form.$valid) {
-      $scope.things.save($scope.newThing);
-      $scope.newThing = undefined;
+      Things.insert($scope.newThing);
+      $scope.newThing = void 0;
     }
   };
                   
   $scope.remove = function(thing) {
-    $scope.things.remove(thing);
+    Things.remove({_id: thing._id});
   };<% } %>
 });

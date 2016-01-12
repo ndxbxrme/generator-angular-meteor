@@ -26,12 +26,13 @@ angular.module '<%= appname %>'
 
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
+      <%= compnameCapped %>.insert $scope.new<%= compnameCappedSingular %>
       $scope.new<%= compnameCappedSingular %> = undefined
       $ionicScrollDelegate.resize()
       
   $scope.remove = (<%= compnameSingular %>) ->
-    $scope.<%= compname %>.remove <%= compnameSingular %>
+    <%= compnameCapped %>.remove
+      _id: <%= compnameSingular %>._id
     $ionicScrollDelegate.resize()
     
   $scope.pageChanged = (newPage) ->
@@ -53,11 +54,12 @@ angular.module '<%= appname %>'
     
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
+      <%= compnameCapped %>.insert $scope.new<%= compnameCappedSingular %>
       $scope.new<%= compnameCappedSingular %> = undefined
       $ionicScrollDelegate.resize()
       
   $scope.remove = (<%= compnameSingular %>) ->
-    $scope.<%= compname %>.remove <%= compnameSingular %>
+    <%= compnameCapped %>.remove
+      _id: <%= compnameSingular %>._id
     $ionicScrollDelegate.resize()
 <% } %>

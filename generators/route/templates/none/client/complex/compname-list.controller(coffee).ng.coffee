@@ -26,11 +26,12 @@ angular.module '<%= appname %>'
 
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
+      <%= compnameCapped %>.insert $scope.new<%= compnameCappedSingular %>
       $scope.new<%= compnameCappedSingular %> = undefined
       
   $scope.remove = (<%= compnameSingular %>) ->
-    $scope.<%= compname %>.remove <%= compnameSingular %>
+    <%= compnameCapped %>.remove
+      _id: <%= compnameSingular %>._id
     
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage
@@ -51,9 +52,10 @@ angular.module '<%= appname %>'
     
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.<%= compname %>.save $scope.new<%= compnameCappedSingular %>
+      <%= compnameCapped %>.insert $scope.new<%= compnameCappedSingular %>
       $scope.new<%= compnameCappedSingular %> = undefined
       
   $scope.remove = (<%= compnameSingular %>) ->
-    $scope.<%= compname %>.remove <%= compnameSingular %>      
+    <%= compnameCapped %>.remove
+      _id: <%= compnameSingular %>._id   
 <% } %>

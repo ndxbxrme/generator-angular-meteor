@@ -28,13 +28,13 @@ angular.module('<%= appname %>')
 
   $scope.save = function() {
     if ($scope.form.$valid) {
-      $scope.<%= compname %>.save($scope.new<%= compnameCappedSingular %>);
+      <%= compnameCapped %>.insert($scope.new<%= compnameCappedSingular %>);
       $scope.new<%= compnameCappedSingular %> = undefined;
     }
   };
                   
   $scope.remove = function(<%= compnameSingular %>) {
-    $scope.<%= compname %>.remove(<%= compnameSingular %>);
+    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>.id});
   };
                   
   $scope.pageChanged = function(newPage) {
@@ -61,13 +61,13 @@ angular.module('<%= appname %>')
 
   $scope.save = function() {
     if ($scope.form.$valid) {
-      $scope.<%= compname %>.save($scope.new<%= compnameCappedSingular %>);
+      <%= compnameCapped %>.insert($scope.new<%= compnameCappedSingular %>);
       $scope.new<%= compnameCappedSingular %> = undefined;
     }
   };
                   
   $scope.remove = function(<%= compnameSingular %>) {
-    $scope.<%= compname %>.remove(<%= compnameSingular %>);
+    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>.id});
   };<% } %>
 });
         

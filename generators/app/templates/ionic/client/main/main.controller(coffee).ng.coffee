@@ -26,11 +26,14 @@ angular.module '<%= appname %>'
     
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.things.save $scope.newThing
+      Things.insert $scope.newThing
       $scope.newThing = undefined
+      $ionicScrollDelegate.resize()
       
   $scope.remove = (thing) ->
-    $scope.things.remove thing
+    Things.remove 
+      _id: thing._id
+    $ionicScrollDelegate.resize()
     
   $scope.pageChanged = (newPage) ->
     $scope.page = newPage
@@ -48,14 +51,15 @@ angular.module '<%= appname %>'
       {}
       $scope.getReactively 'search'
     ]
-    
+
   $scope.save = () ->
     if $scope.form.$valid
-      $scope.things.save $scope.newThing
+      Things.insert $scope.newThing
       $scope.newThing = undefined
       $ionicScrollDelegate.resize()
       
   $scope.remove = (thing) ->
-    $scope.things.remove thing
+    Things.remove 
+      _id: thing._id
     $ionicScrollDelegate.resize()
 <% } %>
