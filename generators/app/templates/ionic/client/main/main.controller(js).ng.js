@@ -29,7 +29,7 @@ angular.module('<%= appname %>')
   $scope.save = function() {
     if ($scope.form.$valid) {
       Things.insert($scope.newThing);
-      $scope.newThing = void 0;
+      $scope.newThing = undefined;
       $ionicScrollDelegate.resize();
     }
   };
@@ -64,7 +64,7 @@ angular.module('<%= appname %>')
   $scope.save = function() {
     if ($scope.form.$valid) {
       Things.insert($scope.newThing);
-      $scope.newThing = void 0;
+      $scope.newThing = undefined;
       $ionicScrollDelegate.resize();
     }
   };

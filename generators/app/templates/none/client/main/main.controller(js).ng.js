@@ -29,7 +29,7 @@ angular.module('<%= appname %>')
   $scope.save = function() {
     if ($scope.form.$valid) {
       Things.insert($scope.newThing);
-      $scope.newThing = void 0;
+      $scope.newThing = undefined;
     }
   };
                   
@@ -62,7 +62,7 @@ angular.module('<%= appname %>')
   $scope.save = function() {
     if ($scope.form.$valid) {
       Things.insert($scope.newThing);
-      $scope.newThing = void 0;
+      $scope.newThing = undefined;
     }
   };
                   
