@@ -292,6 +292,9 @@
       this.filters.appname = this.appname + 'App';
       this.filters.projectname = this.config.get('appname');
       this.filters.modules = '\'' + (this.filters.js ? angularModules.join('\',\n  \'') : angularModules.join('\'\n  \'')) + '\'';
+      this.filters.usedBower = this.filters.bower === true;
+      this.filters.bower = false;
+      this.config.set('filters', this.filters);
       this.sourceRoot(path.join(__dirname, './templates/' + this.filters.framework));
       genUtils.write(this, this.filters);
     },
