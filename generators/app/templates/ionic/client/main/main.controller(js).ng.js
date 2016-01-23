@@ -2,10 +2,10 @@
 
 angular.module('<%= appname %>')
 .controller('MainCtrl', function($scope, $ionicScrollDelegate) {
-<% if(pagination){ %>  $scope.page = 1
-  $scope.perPage = 3
+<% if(pagination){ %>  $scope.page = 1;
+  $scope.perPage = 3;
   $scope.sort = {name_sort : 1};
-  $scope.orderProperty = '1'
+  $scope.orderProperty = '1';
   
   $scope.helpers({
     things: function() {
