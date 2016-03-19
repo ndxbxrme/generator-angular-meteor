@@ -34,7 +34,7 @@ angular.module('<%= appname %>')
   };
                   
   $scope.remove = function(<%= compnameSingular %>) {
-    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>.id});
+    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>._id});
   };
                   
   $scope.pageChanged = function(newPage) {
@@ -67,6 +67,6 @@ angular.module('<%= appname %>')
   };
                   
   $scope.remove = function(<%= compnameSingular %>) {
-    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>.id});
+    <%= compnameCapped %>.remove({_id:<%= compnameSingular %>._id});
   };<% } %>
 });
