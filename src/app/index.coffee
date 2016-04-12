@@ -199,6 +199,8 @@ module.exports = yeoman.generators.Base.extend(
   createMeteorProject: ->
     cb = @async()
     genUtils.spawnSync 'meteor', [
+      '--release'
+      '1.2.1'
       'create'
       @appname
     ], cb
@@ -221,7 +223,19 @@ module.exports = yeoman.generators.Base.extend(
       '.css'
       '.js'
     ].forEach ((ext) ->
-      fs.unlinkSync process.cwd() + '/' + @appname + ext
+      try
+        fs.unlinkSync process.cwd() + '/' + @appname + ext
+      return
+    ).bind(this)
+    #meteor 1.3
+    [
+      'client/main.html'
+      'client/main.css'
+      'client/main.js'
+      'server/main.js'
+    ].forEach ((ext) ->
+      try
+        fs.unlinkSync process.cwd() + '/' + @appname + ext
       return
     ).bind(this)
     cb()

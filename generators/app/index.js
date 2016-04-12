@@ -187,7 +187,7 @@
     createMeteorProject: function() {
       var cb;
       cb = this.async();
-      genUtils.spawnSync('meteor', ['create', this.appname], cb);
+      genUtils.spawnSync('meteor', ['--release', '1.2.1', 'create', this.appname], cb);
     },
     changeDirectory: function() {
       var cb;
@@ -206,7 +206,14 @@
       var cb;
       cb = this.async();
       ['.html', '.css', '.js'].forEach((function(ext) {
-        fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+        try {
+          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+        } catch (_error) {}
+      }).bind(this));
+      ['client/main.html', 'client/main.css', 'client/main.js', 'server/main.js'].forEach((function(ext) {
+        try {
+          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+        } catch (_error) {}
       }).bind(this));
       cb();
     },
