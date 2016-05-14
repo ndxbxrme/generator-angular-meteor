@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module('<%= appname %>')
-.controller('<%= compnameCappedSingular%>DetailCtrl', function($scope, $stateParams) {
+.controller('<%= compnameCappedSingular%>DetailCtrl', function($scope, $stateParams, $state) {
   
   $scope.helpers({
     <%= compnameSingular %>: function() {
@@ -23,6 +23,7 @@ angular.module('<%= appname %>')
           console.log('Unable to update the <%= compnameSingular %>'); 
         } else {
           console.log('Done!');
+          $state.go('<%= compname %>-list');
         }
       });
     }

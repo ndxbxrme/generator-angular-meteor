@@ -1,7 +1,7 @@
 'use strict'
 
 angular.module '<%= appname %>'
-.controller '<%= compnameCappedSingular%>DetailCtrl', ($scope, $stateParams) ->
+.controller '<%= compnameCappedSingular%>DetailCtrl', ($scope, $stateParams, $state) ->
 
   $scope.helpers
     <%= compnameSingular %>: () ->
@@ -22,6 +22,7 @@ angular.module '<%= appname %>'
           console.log 'Unable to update the <%= compnameSingular %>'
         else
           console.log 'Done!'
+          $state.go '<%= compname %>-list'
         
   $scope.reset = () ->
     $scope.<%= compnameSingular %>.reset()

@@ -74,7 +74,7 @@
           name: 'script',
           message: 'What would you like to write scripts with?',
           choices: ['JavaScript', 'CoffeeScript'],
-          "default": 1,
+          "default": 0,
           filter: function(val) {
             var filterMap;
             filterMap = {
@@ -87,7 +87,7 @@
           type: 'list',
           name: 'markup',
           message: 'What would you like to write markup with?',
-          "default": 1,
+          "default": 0,
           choices: ['HTML', 'Jade'],
           filter: function(val) {
             return val.toLowerCase();
@@ -95,7 +95,7 @@
         }, {
           type: 'list',
           name: 'stylesheet',
-          "default": 1,
+          "default": 3,
           message: 'What would you like to write stylesheets with?',
           choices: ['CSS', 'Stylus', 'Less', 'SCSS'],
           filter: function(val) {
@@ -109,7 +109,7 @@
           type: 'list',
           name: 'framework',
           message: 'Select a CSS framework',
-          "default": 1,
+          "default": 2,
           choices: ['None', 'Bootstrap', 'Angular Material', 'Ionic'],
           filter: function(val) {
             var filterMap;
@@ -123,10 +123,6 @@
             };
             return filterMap[val];
           }
-        }, {
-          type: 'confirm',
-          name: 'bower',
-          message: 'Would you like to include Bower package management support?'
         }
       ], (function(answers) {
         this.filters = {};
@@ -135,7 +131,6 @@
         this.filters[answers.stylesheet] = true;
         this.filters.pagination = !!answers.pagination;
         this.filters.framework = answers.framework;
-        this.filters.bower = !!answers.bower;
         cb();
       }).bind(this));
     },
@@ -187,7 +182,7 @@
     createMeteorProject: function() {
       var cb;
       cb = this.async();
-      genUtils.spawnSync('meteor', ['--release', '1.2.1', 'create', this.appname], cb);
+      genUtils.spawnSync('meteor', ['--release', '1.3.2.4', 'create', this.appname], cb);
     },
     changeDirectory: function() {
       var cb;
@@ -271,9 +266,6 @@
         angularModules.splice(angularModules.indexOf('ui-router'), 1);
         angularModules.push('ionic');
       }
-      if (this.filters.bower) {
-        meteorToAdd.push('mquandalle:bower');
-      }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');
         meteorToAdd.push('angularutils:pagination');
@@ -299,8 +291,6 @@
       this.filters.appname = this.appname + 'App';
       this.filters.projectname = this.config.get('appname');
       this.filters.modules = '\'' + (this.filters.js ? angularModules.join('\',\n  \'') : angularModules.join('\'\n  \'')) + '\'';
-      this.filters.usedBower = this.filters.bower === true;
-      this.filters.bower = false;
       this.config.set('filters', this.filters);
       this.sourceRoot(path.join(__dirname, './templates/' + this.filters.framework));
       genUtils.write(this, this.filters);
