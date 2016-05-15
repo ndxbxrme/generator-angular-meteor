@@ -44,7 +44,7 @@
                 <% } else { %>
                     <md-list>
                         <md-subheader class="md-no-sticky">A world of things</md-subheader>
-                        <md-list-item dir-paginate="thing in things" total-items="thingsCount">
+                        <md-list-item ng-repeat="thing in things" total-items="thingsCount">
                             <p> {{ thing.name }} </p>
                             <md-btn ng-click="remove(thing)">&times;</md-btn>
                         </md-list-item>
