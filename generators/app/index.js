@@ -56,7 +56,8 @@
           {
             type: 'input',
             name: 'hmmmm',
-            message: 'Hit Enter to get started'
+            message: 'Hit Enter to get started',
+			store: true
           }
         ], (function() {
           cb();
@@ -73,6 +74,8 @@
           type: 'list',
           name: 'script',
           message: 'What would you like to write scripts with?',
+// Storing this one messes up the default for some reason
+//		      store: true,
           choices: ['JavaScript', 'CoffeeScript'],
           "default": 0,
           filter: function(val) {
@@ -142,6 +145,7 @@
         {
           type: 'confirm',
           name: 'auth',
+		  store: true,
           message: 'Would you like to use user authentication?'
         }, {
           type: 'checkbox',
@@ -182,7 +186,7 @@
     createMeteorProject: function() {
       var cb;
       cb = this.async();
-      genUtils.spawnSync('meteor', ['--release', '1.3.2.4', 'create', this.appname], cb);
+      genUtils.spawnSync('meteor', ['create', this.appname], cb);
     },
     changeDirectory: function() {
       var cb;
@@ -202,12 +206,12 @@
       cb = this.async();
       ['.html', '.css', '.js'].forEach((function(ext) {
         try {
-          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+          fs.unlinkSync(process.cwd() + '/' + ext);
         } catch (_error) {}
       }).bind(this));
       ['client/main.html', 'client/main.css', 'client/main.js', 'server/main.js'].forEach((function(ext) {
         try {
-          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+          fs.unlinkSync(process.cwd() + '/' + ext);
         } catch (_error) {}
       }).bind(this));
       cb();
@@ -246,6 +250,7 @@
         meteorToAdd.push('civilframe:angular-jade');
       }
       if (this.filters.framework === 'material') {
+        meteorToAdd.push('twbs:bootstrap');
         meteorToAdd.push('angular:angular-material');
         angularModules.push('ngMaterial');
       }
@@ -286,6 +291,22 @@
         meteorToAdd.push('accounts-google');
       }
       genUtils.spawnSync('meteor', meteorToAdd, cb);
+    },
+    updateMeteorPackages: function() {
+      var cb;
+      cb = this.async();
+// A Quick hack to update the packages
+      var meteorToUpdate = meteorToAdd;
+      meteorToUpdate[0] = 'update';
+      meteorToUpdate.push('angular:angular');
+//      meteorToUpdate.push('angular:angular-animate');
+//      meteorToUpdate.push('angular:angular-aria');
+      meteorToUpdate.push('dburles:mongo-collection-instances');
+      meteorToUpdate.push('lai:collection-extensions');
+      meteorToUpdate.push('pbastowski:angular-babel');
+      meteorToUpdate.push('tmeasday:check-npm-versions');
+
+      genUtils.spawnSync('meteor', meteorToUpdate, cb);
     },
     write: function() {
       this.filters.appname = this.appname + 'App';

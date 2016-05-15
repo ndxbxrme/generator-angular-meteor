@@ -44,6 +44,7 @@
         {
           type: 'text',
           name: 'appname',
+		  store: true,
           message: 'Please enter your app\'s name'
         }, {
           type: 'list',
@@ -120,6 +121,7 @@
         {
           type: 'confirm',
           name: 'auth',
+		  store: true,
           message: 'Would you like to use user authentication?'
         }, {
           type: 'checkbox',

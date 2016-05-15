@@ -51,6 +51,7 @@
         {
           type: 'confirm',
           name: 'protected',
+		  store: true,
           message: 'Is this a protected model?',
           "default": true,
           when: (function() {

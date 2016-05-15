@@ -46,6 +46,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this factory?',
+		  store: true,
           "default": '/client/components'
         }
       ], (function(answers) {

@@ -46,6 +46,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this directive?',
+		  store: true,
           "default": '/client/components'
         }, {
           type: 'confirm',
