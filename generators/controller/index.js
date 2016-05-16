@@ -46,6 +46,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this controller?',
+		  store: true,
           "default": '/client/components'
         }
       ], (function(answers) {

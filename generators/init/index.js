@@ -44,13 +44,14 @@
         {
           type: 'text',
           name: 'appname',
+		  store: true,
           message: 'Please enter your app\'s name'
         }, {
           type: 'list',
           name: 'script',
           message: 'What are you writing scripts with?',
           choices: ['JavaScript', 'CoffeeScript'],
-          "default": 1,
+          "default": 0,
           filter: function(val) {
             var filterMap;
             filterMap = {
@@ -63,7 +64,7 @@
           type: 'list',
           name: 'markup',
           message: 'What are you writing markup with?',
-          "default": 1,
+          "default": 0,
           choices: ['HTML', 'Jade'],
           filter: function(val) {
             return val.toLowerCase();
@@ -71,7 +72,7 @@
         }, {
           type: 'list',
           name: 'stylesheet',
-          "default": 1,
+          "default": 3,
           message: 'What are you writing stylesheets with?',
           choices: ['CSS', 'Stylus', 'Less', 'SCSS'],
           filter: function(val) {
@@ -85,7 +86,7 @@
           type: 'list',
           name: 'framework',
           message: 'Select a CSS framework',
-          "default": 1,
+          "default": 2,
           choices: ['None', 'Bootstrap', 'Angular Material', 'Ionic'],
           filter: function(val) {
             var filterMap;
@@ -99,10 +100,6 @@
             };
             return filterMap[val];
           }
-        }, {
-          type: 'confirm',
-          name: 'bower',
-          message: 'Would you like to include Bower package management support?'
         }
       ], (function(answers) {
         this.filters = {};
@@ -113,7 +110,6 @@
         this.filters[answers.stylesheet] = true;
         this.filters.pagination = !!answers.pagination;
         this.filters.framework = answers.framework;
-        this.filters.bower = !!answers.bower;
         cb();
       }).bind(this));
     },
@@ -125,6 +121,7 @@
         {
           type: 'confirm',
           name: 'auth',
+		  store: true,
           message: 'Would you like to use user authentication?'
         }, {
           type: 'checkbox',
@@ -220,9 +217,6 @@
         meteorToAdd.push('driftyco:ionic');
         angularModules.splice(angularModules.indexOf('ui-router'), 1);
         angularModules.push('ionic');
-      }
-      if (this.filters.bower) {
-        meteorToAdd.push('mquandalle:bower');
       }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');

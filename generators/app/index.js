@@ -56,7 +56,8 @@
           {
             type: 'input',
             name: 'hmmmm',
-            message: 'Hit Enter to get started'
+            message: 'Hit Enter to get started',
+			store: true
           }
         ], (function() {
           cb();
@@ -73,8 +74,10 @@
           type: 'list',
           name: 'script',
           message: 'What would you like to write scripts with?',
+// Storing this one messes up the default for some reason
+//		      store: true,
           choices: ['JavaScript', 'CoffeeScript'],
-          "default": 1,
+          "default": 0,
           filter: function(val) {
             var filterMap;
             filterMap = {
@@ -87,7 +90,7 @@
           type: 'list',
           name: 'markup',
           message: 'What would you like to write markup with?',
-          "default": 1,
+          "default": 0,
           choices: ['HTML', 'Jade'],
           filter: function(val) {
             return val.toLowerCase();
@@ -95,7 +98,7 @@
         }, {
           type: 'list',
           name: 'stylesheet',
-          "default": 1,
+          "default": 3,
           message: 'What would you like to write stylesheets with?',
           choices: ['CSS', 'Stylus', 'Less', 'SCSS'],
           filter: function(val) {
@@ -109,7 +112,7 @@
           type: 'list',
           name: 'framework',
           message: 'Select a CSS framework',
-          "default": 1,
+          "default": 2,
           choices: ['None', 'Bootstrap', 'Angular Material', 'Ionic'],
           filter: function(val) {
             var filterMap;
@@ -123,10 +126,6 @@
             };
             return filterMap[val];
           }
-        }, {
-          type: 'confirm',
-          name: 'bower',
-          message: 'Would you like to include Bower package management support?'
         }
       ], (function(answers) {
         this.filters = {};
@@ -135,7 +134,6 @@
         this.filters[answers.stylesheet] = true;
         this.filters.pagination = !!answers.pagination;
         this.filters.framework = answers.framework;
-        this.filters.bower = !!answers.bower;
         cb();
       }).bind(this));
     },
@@ -147,6 +145,7 @@
         {
           type: 'confirm',
           name: 'auth',
+		  store: true,
           message: 'Would you like to use user authentication?'
         }, {
           type: 'checkbox',
@@ -187,7 +186,7 @@
     createMeteorProject: function() {
       var cb;
       cb = this.async();
-      genUtils.spawnSync('meteor', ['--release', '1.2.1', 'create', this.appname], cb);
+      genUtils.spawnSync('meteor', ['create', this.appname], cb);
     },
     changeDirectory: function() {
       var cb;
@@ -207,12 +206,12 @@
       cb = this.async();
       ['.html', '.css', '.js'].forEach((function(ext) {
         try {
-          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+          fs.unlinkSync(process.cwd() + '/' + ext);
         } catch (_error) {}
       }).bind(this));
       ['client/main.html', 'client/main.css', 'client/main.js', 'server/main.js'].forEach((function(ext) {
         try {
-          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+          fs.unlinkSync(process.cwd() + '/' + ext);
         } catch (_error) {}
       }).bind(this));
       cb();
@@ -251,6 +250,7 @@
         meteorToAdd.push('civilframe:angular-jade');
       }
       if (this.filters.framework === 'material') {
+        meteorToAdd.push('twbs:bootstrap');
         meteorToAdd.push('angular:angular-material');
         angularModules.push('ngMaterial');
       }
@@ -270,9 +270,6 @@
         meteorToAdd.push('driftyco:ionic');
         angularModules.splice(angularModules.indexOf('ui-router'), 1);
         angularModules.push('ionic');
-      }
-      if (this.filters.bower) {
-        meteorToAdd.push('mquandalle:bower');
       }
       if (this.filters.pagination) {
         meteorToAdd.push('tmeasday:publish-counts');
@@ -295,12 +292,26 @@
       }
       genUtils.spawnSync('meteor', meteorToAdd, cb);
     },
+    updateMeteorPackages: function() {
+      var cb;
+      cb = this.async();
+// A Quick hack to update the packages
+      var meteorToUpdate = meteorToAdd;
+      meteorToUpdate[0] = 'update';
+      meteorToUpdate.push('angular:angular');
+//      meteorToUpdate.push('angular:angular-animate');
+//      meteorToUpdate.push('angular:angular-aria');
+      meteorToUpdate.push('dburles:mongo-collection-instances');
+      meteorToUpdate.push('lai:collection-extensions');
+      meteorToUpdate.push('pbastowski:angular-babel');
+      meteorToUpdate.push('tmeasday:check-npm-versions');
+
+      genUtils.spawnSync('meteor', meteorToUpdate, cb);
+    },
     write: function() {
       this.filters.appname = this.appname + 'App';
       this.filters.projectname = this.config.get('appname');
       this.filters.modules = '\'' + (this.filters.js ? angularModules.join('\',\n  \'') : angularModules.join('\'\n  \'')) + '\'';
-      this.filters.usedBower = this.filters.bower === true;
-      this.filters.bower = false;
       this.config.set('filters', this.filters);
       this.sourceRoot(path.join(__dirname, './templates/' + this.filters.framework));
       genUtils.write(this, this.filters);

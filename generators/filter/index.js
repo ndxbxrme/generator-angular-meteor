@@ -39,6 +39,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this filter?',
+		  store: true,
           "default": '/client/components'
         }
       ], (function(answers) {

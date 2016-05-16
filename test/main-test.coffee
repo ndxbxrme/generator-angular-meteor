@@ -14,7 +14,6 @@ describe 'angular-meteor generator', ->
     markup: 'jade'
     stylesheet: 'stylus'
     material: true
-    bower: true
     auth: true
     oauth: []
 

@@ -51,6 +51,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this route?',
+		  store: true,
           "default": '/client'
         }, {
           type: 'confirm',

@@ -1,39 +1,59 @@
-<div class="main" layout="row">
-  <span flex=""></span>
-  <div layout="column">
-    <h1>Things</h1>
-    <form class="md-whiteframe-z1" ng-submit="save()" name="form" novalidate layout-padding="">
-      <p>Add a thing</p>
-      <md-input-container>
-        <label>Name</label>
-        <input ng-model="newThing.name" placeholder="Name">
-      </md-input-container>
-      <input class="md-button" type="submit" value="Add">
-    </form>
-<% if(pagination) {%>    <div layout="row" layout-padding="">
-      <md-input-container flex="65">
-        <label>Search</label>
-        <input type="Search" ng-model="search" placeholder="Search">
-      </md-input-container>
-      <md-select ng-model="orderProperty" flex="35">
-        <md-option value="1">Ascending</md-option>
-        <md-option value="-1">Descending</md-option>
-      </md-select>
+<div class="container" ng-cloak>
+    <div class="sample" layout="column">
+        <md-content class="md-padding" flex=100>
+            <h1>Things</h1>
+            <form class="md-whiteframe-z1" name="form" ng-submit="save()">
+                <md-list>
+                    <md-list-item>
+                        <md-input-container class="md-block" flex="90">
+                            <label>Name</label>
+                            <input required md-no-asterisk placeholder="name" ng-model="newThing.name">
+                            <div ng-messages="form.name.$error">
+                                <div ng-message="required">This is required.</div>
+                            </div>
+                        </md-input-container>
+                        <md-button value="Add" type="submit" flex="10">Add</md-button>
+                    </md-list-item>
+                </md-list>
+            </form>
+        </md-content>
     </div>
-<% } %>
-<% if(pagination) { %>    <ul>
-      <li dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount" current-page='page'>
-        <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
-      </li>
-    </ul>
-    <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
-<% } else { %>    <ul>
-      <li ng-repeat="thing in things">
-        <p>{{ thing.name }} <button ng-click="remove(thing)">&times;</button></p>
-      </li>
-    </ul>
-<% } %>
-    <p>Total number of things: {{<% if(pagination) {%>thingsCount<% } else { %>things.length<% } %>}}</p>
-  </div>
-  <span flex=""></span>
+    <div class="sample" layout="column">
+        <md-content class="md-padding">
+            <% if(pagination) {%>
+                <div layout="row" layout-padding="">
+                    <md-input-container>
+                        <label>Search</label>
+                        <input type="Search" ng-model="search" placeholder="Search">
+                    </md-input-container>
+                    <md-select ng-model="orderProperty">
+                        <md-option value="1">Ascending</md-option>
+                        <md-option value="-1">Descending</md-option>
+                    </md-select>
+                </div>
+            <% } %>
+            <% if(pagination) { %>
+                <md-list>
+                    <md-subheader class="md-no-sticky">A world of things</md-subheader>
+                    <md-list-item dir-paginate="thing in things | itemsPerPage: perPage" total-items="thingsCount" current-page='page'>
+                        <p> {{ thing.name }} </p>
+                        <md-btn ng-click="remove(thing)">&times;</md-btn>
+                    </md-list-item>
+                </md-list>
+                <dir-pagination-controls on-page-change="pageChanged(newPageNumber)"></dir-pagination-controls>
+                <% } else { %>
+                    <md-list>
+                        <md-subheader class="md-no-sticky">A world of things</md-subheader>
+                        <md-list-item ng-repeat="thing in things" total-items="thingsCount">
+                            <p> {{ thing.name }} </p>
+                            <md-btn ng-click="remove(thing)">&times;</md-btn>
+                        </md-list-item>
+                    </md-list>
+                    <% } %>
+                        <p>Total number of things: {{
+                            <% if(pagination) {%>thingsCount
+                                <% } else { %>things.length
+                                    <% } %>}}</p>
+      </md-content>
+    </div>
 </div>

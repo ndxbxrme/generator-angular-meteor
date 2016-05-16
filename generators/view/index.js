@@ -46,6 +46,7 @@
         {
           name: 'dir',
           message: 'Where would you like to create this view?',
+		  store: true,
           "default": '/client'
         }
       ], (function(answers) {
