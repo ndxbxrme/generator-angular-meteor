@@ -8,7 +8,9 @@
     });
     poll = function() {
       if (result._closesGot === 1) {
-        cb();
+        if (typeof cb === "function") {
+          cb();
+        }
       } else {
         setTimeout(poll, 500);
       }

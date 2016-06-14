@@ -1,5 +1,5 @@
 (function() {
-  var _, _i, angularModules, fs, genUtils, meteorToAdd, meteorToRemove, os, path, yeoman;
+  var _, _i, angularModules, fs, genUtils, is1point3, meteorToAdd, meteorToRemove, os, path, yeoman;
 
   yeoman = require('yeoman-generator');
 
@@ -20,6 +20,8 @@
   meteorToRemove = ['remove', 'blaze-html-templates', 'ecmascript'];
 
   angularModules = ['angular-meteor', 'ui.router'];
+
+  is1point3 = false;
 
   module.exports = yeoman.generators.Base.extend({
     init: function() {
@@ -123,10 +125,6 @@
             };
             return filterMap[val];
           }
-        }, {
-          type: 'confirm',
-          name: 'bower',
-          message: 'Would you like to include Bower package management support?'
         }
       ], (function(answers) {
         this.filters = {};
@@ -135,7 +133,6 @@
         this.filters[answers.stylesheet] = true;
         this.filters.pagination = !!answers.pagination;
         this.filters.framework = answers.framework;
-        this.filters.bower = !!answers.bower;
         cb();
       }).bind(this));
     },
@@ -187,7 +184,7 @@
     createMeteorProject: function() {
       var cb;
       cb = this.async();
-      genUtils.spawnSync('meteor', ['--release', '1.2.1', 'create', this.appname], cb);
+      genUtils.spawnSync('meteor', ['create', this.appname], cb);
     },
     changeDirectory: function() {
       var cb;
@@ -210,9 +207,10 @@
           fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
         } catch (_error) {}
       }).bind(this));
-      ['client/main.html', 'client/main.css', 'client/main.js', 'server/main.js'].forEach((function(ext) {
+      ['client/main.html', 'client/main.css', 'client/main.js', 'server/main.js'].forEach((function(fileName) {
         try {
-          fs.unlinkSync(process.cwd() + '/' + this.appname + ext);
+          fs.unlinkSync(process.cwd() + '/' + fileName);
+          is1point3 = true;
         } catch (_error) {}
       }).bind(this));
       cb();
@@ -294,6 +292,23 @@
         meteorToAdd.push('accounts-google');
       }
       genUtils.spawnSync('meteor', meteorToAdd, cb);
+    },
+    updateMeteorPackages: function() {
+      var cb, meteorToUpdate;
+      if (is1point3) {
+        cb = this.async();
+        meteorToUpdate = meteorToAdd;
+        meteorToUpdate[0] = 'update';
+        meteorToUpdate.push('angular:angular');
+        meteorToUpdate.push('dburles:mongo-collection-instances');
+        meteorToUpdate.push('lai:collection-extensions');
+        meteorToUpdate.push('pbastowski:angular-babel');
+        if (this.filters.auth) {
+          meteorToUpdate.push('dotansimha:accounts-ui-angular');
+          meteorToUpdate.push('tmeasday:check-npm-versions');
+        }
+        genUtils.spawnSync('meteor', meteorToUpdate, cb);
+      }
     },
     write: function() {
       this.filters.appname = this.appname + 'App';

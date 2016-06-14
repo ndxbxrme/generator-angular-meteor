@@ -19,6 +19,7 @@ angularModules = [
   'angular-meteor'
   'ui.router'
 ]
+is1point3 = false
 module.exports = yeoman.generators.Base.extend(
   init: ->
     @argument 'name',
@@ -133,11 +134,6 @@ module.exports = yeoman.generators.Base.extend(
             'Ionic': 'ionic'
           filterMap[val]
       }
-      {
-        type: 'confirm'
-        name: 'bower'
-        message: 'Would you like to include Bower package management support?'
-      }
     ], ((answers) ->
       @filters = {}
       @filters[answers.script] = true
@@ -145,7 +141,6 @@ module.exports = yeoman.generators.Base.extend(
       @filters[answers.stylesheet] = true
       @filters.pagination = ! !answers.pagination
       @filters.framework = answers.framework
-      @filters.bower = ! !answers.bower
       cb()
       return
     ).bind(this)
@@ -231,9 +226,10 @@ module.exports = yeoman.generators.Base.extend(
       'client/main.css'
       'client/main.js'
       'server/main.js'
-    ].forEach ((ext) ->
+    ].forEach ((fileName) ->
       try
-        fs.unlinkSync process.cwd() + '/' + @appname + ext
+        fs.unlinkSync process.cwd() + '/' + fileName
+        is1point3 = true
       return
     ).bind(this)
     cb()
@@ -294,6 +290,20 @@ module.exports = yeoman.generators.Base.extend(
     if @filters.googleAuth
       meteorToAdd.push 'accounts-google'
     genUtils.spawnSync 'meteor', meteorToAdd, cb
+    return
+  updateMeteorPackages: ->
+    if is1point3
+      cb = @async()
+      meteorToUpdate = meteorToAdd
+      meteorToUpdate[0] = 'update'
+      meteorToUpdate.push 'angular:angular'
+      meteorToUpdate.push 'dburles:mongo-collection-instances'
+      meteorToUpdate.push 'lai:collection-extensions'
+      meteorToUpdate.push 'pbastowski:angular-babel'
+      if @filters.auth
+        meteorToUpdate.push 'dotansimha:accounts-ui-angular'
+        meteorToUpdate.push 'tmeasday:check-npm-versions'
+      genUtils.spawnSync 'meteor', meteorToUpdate, cb
     return
   write: ->
     @filters.appname = @appname + 'App'

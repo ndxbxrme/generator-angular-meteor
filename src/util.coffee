@@ -3,7 +3,7 @@ spawnSync = (command, args, cb) ->
 
   poll = ->
     if result._closesGot == 1
-      cb()
+      cb?()
     else
       setTimeout poll, 500
     return
